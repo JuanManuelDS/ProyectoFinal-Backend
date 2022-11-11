@@ -69,7 +69,7 @@ public class Secciones {
 		public void setImagen(String imagen) {
 			this.imagen = imagen;
 		}
-		
+	
 		public Cartas_restaurantes getCartas() {
 			return cartas_restaurantes;
 		}

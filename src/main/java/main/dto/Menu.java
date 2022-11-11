@@ -83,7 +83,7 @@ public class Menu {
 	public void setPrecio(Double precio_menu) {
 		this.precio_menu = precio_menu;
 	}
-	
+
 	public Cartas_restaurantes getCartas() {
 		return cartas_restaurantes;
 	}

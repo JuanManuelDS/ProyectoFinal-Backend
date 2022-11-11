@@ -25,7 +25,7 @@ public class Idiomas {
 	
 	@Column(name = "nivel_oral  ")
 	private String nivel_oral  ;
-	
+
 	@OneToOne
 	@JoinColumn(name="curriculum")
 	private Curriculum curriculum;

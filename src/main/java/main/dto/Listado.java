@@ -23,7 +23,7 @@ public class Listado extends Plantilla{
 	@OneToOne
 	@JoinColumn(name="nombre_archivo")
 	private String nombre_archivo;
-	
+
 	@Column
 	private String titulo;
 	
