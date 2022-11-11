@@ -49,18 +49,12 @@ public class Curriculum {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Curriculum(String nombre_archivo, String texto_presentacion, String imagen, List<Estudios> estudios,
-			List<Datos> datos, List<Otros> otros, List<ExperienciaLaboral> experienciaLaboral,
-			List<Idioma> idioma) {
+	public Curriculum(String nombre_archivo, String texto_presentacion) {
 		super();
 		this.nombre_archivo = nombre_archivo;
 		this.texto_presentacion = texto_presentacion;
 		this.imagen = imagen;
 		this.estudios = estudios;
-		this.datos = datos;
-		this.otros = otros;
-		this.experienciaLaboral = experienciaLaboral;
-		this.idioma = idioma;
 	}
 
 	public String getNombre_archivo() {
