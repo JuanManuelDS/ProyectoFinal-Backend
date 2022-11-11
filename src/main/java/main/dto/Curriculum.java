@@ -17,7 +17,7 @@ public class Curriculum {
 	@Id
 	@OneToOne
 	@JoinColumn(name="nombre_archivo")
-	private String nombre_archivo;
+	private Plantilla plantilla;
 	
 	@Column
 	private String texto_presentacion;
