@@ -4,20 +4,23 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="curriculums")
-public class Curriculum {
+public class Curriculum  extends Plantilla{
 	
 	@Id
 	@OneToOne
 	@JoinColumn(name="nombre_archivo")
-	private Plantilla plantilla;
+	private String nombre_archivo;
 	
 	@Column
 	private String texto_presentacion;
@@ -31,31 +34,35 @@ public class Curriculum {
 	
 	@OneToOne
 	@JoinColumn(name="nombre_archivo")
-	private List<Datos> datos;
+	private Datos datos;
 	
 	@OneToMany
 	@JoinColumn(name="nombre_archivo")
-	private List<Otros> otros;
+	private List<Otro> otros;
 	
 	@OneToMany
 	@JoinColumn(name="nombre_archivo")
-	private List<ExperienciaLaboral> ixperienciaLaboral;
+	private List<ExperienciaLaboral> experienciaLaboral;
 	
 	@OneToMany
 	@JoinColumn(name="nombre_archivo")
 	private List<Idioma> idioma;
 	
+	// ----------------------CONSTRUCTORES---------------------------
+	
 	public Curriculum() {
 		// TODO Auto-generated constructor stub
+		this.nombre_archivo = super.getNombre_archivo();
 	}
 
-	public Curriculum(String nombre_archivo, String texto_presentacion) {
+	public Curriculum(String texto_presentacion, String imagen) {
 		super();
-		this.nombre_archivo = nombre_archivo;
+		this.nombre_archivo = super.getNombre_archivo();
 		this.texto_presentacion = texto_presentacion;
 		this.imagen = imagen;
-		this.estudios = estudios;
 	}
+	
+	// -----------------------GETTERS Y SETTERS-----------------------------
 
 	public String getNombre_archivo() {
 		return nombre_archivo;
@@ -81,6 +88,8 @@ public class Curriculum {
 		this.imagen = imagen;
 	}
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Estudios")
 	public List<Estudios> getEstudios() {
 		return estudios;
 	}
@@ -89,30 +98,38 @@ public class Curriculum {
 		this.estudios = estudios;
 	}
 
-	public List<Datos> getDatos() {
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "Datos")
+	public Datos getDatos() {
 		return datos;
 	}
 
-	public void setDatos(List<Datos> datos) {
+	public void setDatos(Datos datos) {
 		this.datos = datos;
 	}
 
-	public List<Otros> getOtros() {
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Otro")
+	public List<Otro> getOtros() {
 		return otros;
 	}
 
-	public void setOtros(List<Otros> otros) {
+	public void setOtros(List<Otro> otros) {
 		this.otros = otros;
 	}
 
-	public List<ExperienciaLaboral> getIxperienciaLaboral() {
-		return ixperienciaLaboral;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ExperienciaLaboral")
+	public List<ExperienciaLaboral> getExperienciaLaboral() {
+		return experienciaLaboral;
 	}
 
-	public void setIxperienciaLaboral(List<ExperienciaLaboral> ixperienciaLaboral) {
-		this.ixperienciaLaboral = ixperienciaLaboral;
+	public void setIxperienciaLaboral(List<ExperienciaLaboral> experienciaLaboral) {
+		this.experienciaLaboral = experienciaLaboral;
 	}
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Idioma")
 	public List<Idioma> getIdioma() {
 		return idioma;
 	}
@@ -120,11 +137,13 @@ public class Curriculum {
 	public void setIdioma(List<Idioma> idioma) {
 		this.idioma = idioma;
 	}
+	
+	// --------------------------------TOSTRING-------------------------------
 
 	@Override
 	public String toString() {
 		return "Curriculum [nombre_archivo=" + nombre_archivo + ", texto_presentacion=" + texto_presentacion
-				+ ", imagen=" + imagen + ", estudios=" + estudios + ", datos=" + datos + "]";
+				+ ", imagen=" + imagen + "]";
 	}
 	
 	
