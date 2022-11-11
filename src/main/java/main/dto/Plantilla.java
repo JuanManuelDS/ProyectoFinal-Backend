@@ -1,4 +1,4 @@
-package dto;
+package main.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
