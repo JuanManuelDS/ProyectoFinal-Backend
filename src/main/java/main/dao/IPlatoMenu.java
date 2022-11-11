@@ -8,3 +8,4 @@ import dto.PlatoMenu;
 public interface IPlatoMenu extends JpaRepository<PlatoMenu, Long>{
 
 }
+//Hola
