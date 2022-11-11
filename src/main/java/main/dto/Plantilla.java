@@ -2,6 +2,8 @@ package main.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,10 @@ public class Plantilla {
 
 	// Atributos
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "nombre_archivo")
 	private String nombre_archivo;
 	
 	@Column(name = "firma")
@@ -28,16 +34,25 @@ public class Plantilla {
 	public Plantilla() {
 		
 	}
-
-	public Plantilla(String nombre_archivo, String firma, Usuario usuario) {
+	
+	public Plantilla(Long id, String nombre_archivo, String firma, Usuario usuario) {
 		//super();
+		this.id = id;
 		this.nombre_archivo = nombre_archivo;
 		this.firma = firma;
 		this.usuario = usuario;
 	}
-	
+
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNombre_archivo() {
 		return nombre_archivo;
 	}
@@ -61,12 +76,13 @@ public class Plantilla {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	// --------------------------------TOSTRING-------------------------------
 	
+	// --------------------------------TOSTRING-------------------------------
+
 	@Override
 	public String toString() {
-		return "Plantilla [nombre_archivo=" + nombre_archivo + ", firma=" + firma + ", usuario=" + usuario + "]";
+		return "Plantilla [id=" + id + ", nombre_archivo=" + nombre_archivo + ", firma=" + firma + ", usuario="
+				+ usuario + "]";
 	}
 	
 }

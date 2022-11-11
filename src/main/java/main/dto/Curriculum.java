@@ -19,8 +19,8 @@ public class Curriculum  extends Plantilla{
 	
 	@Id
 	@OneToOne
-	@JoinColumn(name="nombre_archivo")
-	private String nombre_archivo;
+	@JoinColumn(name="id")
+	private Long id;
 	
 	@Column
 	private String texto_presentacion;

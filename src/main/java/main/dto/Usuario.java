@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,6 +20,10 @@ public class Usuario {
 	
 	// Atributos
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "nombre_usuario")
@@ -30,22 +36,31 @@ public class Usuario {
 	@JoinColumn(name = "email")
 	private List<Plantilla> plantillas;
 	
+	//------------------CONSTRUCTORES----------------------------
 
 	public Usuario() {
 		
 	}
 	
-	//------------------CONSTRUCTORES----------------------------
-
-	public Usuario(String email, String nombre_usuario, String contrasena) {
+	public Usuario(Long id, String email, String nombre_usuario, String contrasena, List<Plantilla> plantillas) {
 		//super();
+		this.id = id;
 		this.email = email;
 		this.nombre_usuario = nombre_usuario;
 		this.contrasena = contrasena;
+		this.plantillas = plantillas;
 	}
-	
+
 	//----------------GETTERS Y SETTERS------------------------------
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -79,12 +94,13 @@ public class Usuario {
 	public void setPlantillas(List<Plantilla> plantillas) {
 		this.plantillas = plantillas;
 	}
-
-	//------------------------TOSTRING-----------------------------
 	
+	//------------------------TOSTRING-----------------------------
+
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nombre_usuario=" + nombre_usuario + ", contrasena=" + contrasena + "]";
+		return "Usuario [id=" + id + ", email=" + email + ", nombre_usuario=" + nombre_usuario + ", contrasena="
+				+ contrasena + ", plantillas=" + plantillas + "]";
 	}
 
 }
