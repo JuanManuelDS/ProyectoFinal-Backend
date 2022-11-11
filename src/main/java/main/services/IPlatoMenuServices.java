@@ -4,6 +4,7 @@ import java.util.List;
 
 import dto.PlatoMenu;
 
+//Esta clase tiene 2 primary keys. Hay que modificar los métodos
 public interface IPlatoMenuServices {
 
 	public List<PlatoMenu> listarPlatoMenus();
