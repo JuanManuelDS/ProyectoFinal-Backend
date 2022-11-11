@@ -6,13 +6,13 @@ import dto.Datos;
 
 public interface IDatosServices {
 
-	public List<Datos> listarDatos();
+	public List<DatosServices> listarDatos();
 	
-	public Datos buscarDatos(Long id);
+	public DatosServices buscarDatos(Long id);
 	
-	public Datos guardarDatos(Datos datos);
+	public DatosServices guardarDatos(DatosServices datos);
 	
-	public actualizarDatos(Datos datos);
+	public actualizarDatos(DatosServices datos);
 	
 	public void eliminarDatos(Long id);
 	
