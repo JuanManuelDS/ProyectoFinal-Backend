@@ -8,7 +8,7 @@ public interface IPlatoServices {
 
 	public List<Plato> listarPlatos();
 	
-	public Plato buscarPlato(Plato plato);
+	public Plato buscarPlato(Long id);
 	
 	public Plato guardarPlato(Plato plato);
 	

@@ -42,5 +42,4 @@ public class CartaRestaurateServices implements ICartaRestauranteService {
 		iCartaRestauranteDAO.deleteById(id);
 	}
 	
-	
 }
