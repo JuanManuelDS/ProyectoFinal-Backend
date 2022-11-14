@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.dto.CartasRestaurantes;
 import main.services.CartaRestaurateServices;
 
 @RestController
@@ -22,24 +23,28 @@ public class CartaRestauranteController {
 	CartaRestaurateServices cartaRestaurateServices;
 	
 	@GetMapping("/cartasRestaurantes")
-	public List<CartaRestaurante> listarCartasRestaurantes(){
+	public List<CartasRestaurantes> listarCartasRestaurantes(){
 		return cartaRestaurateServices.listarCartasRestaurantes();
 	}
 	
 	@GetMapping("/cartaRestaurantes/{id}")
-	public CartaRestaurante buscarCartaRestaurante(@PathVariable(name="id")Long id) {
+	public CartasRestaurantes buscarCartaRestaurante(@PathVariable(name="id")Long id) {
 		return cartaRestaurateServices.buscarCartaRestaurante(id);
 	}
 	
 	@PostMapping("/cartaRestaurantes")
-	public CartaRestaurate guardarCartaRestaurante(@RequestBody CartaRestaurante cartaRestaurante) {
-		return cartaRestaurantes.save(cartaRestaurante);
+	public CartasRestaurantes guardarCartaRestaurante(@RequestBody CartasRestaurantes cartaRestaurante) {
+		return cartaRestaurateServices.guardarCartaRestaurante(cartaRestaurante);
 	}
 	
 	@PutMapping("/cartaRestaurante/{id}")
-	public CartaRestaurante actualizarCartaRestaurante(@PathVariable(name="id")Long id, @RequestBody CartaRestaurante cartaRestaurante) {
+	public CartasRestaurantes actualizarCartaRestaurante(@PathVariable(name="id")Long id, @RequestBody CartasRestaurantes cartaRestaurante) {
 		
+		CartasRestaurantes cartaSeleccionada = cartaRestaurateServices.buscarCartaRestaurante(id);
 		
+		cartaSeleccionada.setNombre_restaurante(cartaRestaurante.getNombre_restaurante());
+		
+		return cartaRestaurateServices.actualizarCartaRestaurante(cartaSeleccionada);
 	}
 	
 	@DeleteMapping("/cartaRestaurante/{id}")
