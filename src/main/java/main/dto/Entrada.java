@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name="entradas")
 public class Entrada {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

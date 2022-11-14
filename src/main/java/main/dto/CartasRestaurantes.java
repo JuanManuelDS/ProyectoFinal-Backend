@@ -21,41 +21,41 @@ public class CartasRestaurantes extends Plantilla{
 	// Atributos
 	@Id
 	@OneToOne
-	@JoinColumn(name="nombre_archivo")
-	private String nombre_archivo;
+	@JoinColumn(name="id")
+	private Long id;
 	
 	@Column
 	private String nombre_restaurante;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn
 	private List<Menu> menus;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn
-	private List<Seccion> secciones;
+	private List<Secciones> secciones;
 	
 
 	// ----------------------CONSTRUCTORES---------------------------
 	
 	public CartasRestaurantes() {
-		this.nombre_archivo = super.getNombre_archivo();
+		this.id = super.getId();
 	}
 
 	public CartasRestaurantes(String nombre_restaurante) {
 		super();
-		this.nombre_archivo = super.getNombre_archivo();
+		this.id = super.getId();
 		this.nombre_restaurante = nombre_restaurante;
 	}
 
 	// -----------------------GETTERS Y SETTERS-----------------------------
 	
-	public String getNombre_archivo() {
-		return nombre_archivo;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNombre_archivo(String nombre_archivo) {
-		this.nombre_archivo = nombre_archivo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre_restaurante() {
@@ -77,12 +77,12 @@ public class CartasRestaurantes extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Seccion")
-	public List<Seccion> getSecciones() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Secciones")
+	public List<Secciones> getSecciones() {
 		return secciones;
 	}
 
-	public void setSecciones(List<Seccion> secciones) {
+	public void setSecciones(List<Secciones> secciones) {
 		this.secciones = secciones;
 	}
 
@@ -90,7 +90,6 @@ public class CartasRestaurantes extends Plantilla{
 	
 	@Override
 	public String toString() {
-		return "CartasRestaurantes [nombre_archivo=" + nombre_archivo + ", nombre_restaurante=" + nombre_restaurante
-				+ "]";
+		return "CartasRestaurantes [id=" + id + ", nombre_restaurante=" + nombre_restaurante + "]";
 	}
 }

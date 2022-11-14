@@ -52,24 +52,24 @@ public class Curriculum  extends Plantilla{
 	
 	public Curriculum() {
 		// TODO Auto-generated constructor stub
-		this.nombre_archivo = super.getNombre_archivo();
+		this.id = super.getId();
 	}
 
 	public Curriculum(String texto_presentacion, String imagen) {
-		super();
-		this.nombre_archivo = super.getNombre_archivo();
+		//super();
+		this.id = super.getId();
 		this.texto_presentacion = texto_presentacion;
 		this.imagen = imagen;
 	}
 	
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
-	public String getNombre_archivo() {
-		return nombre_archivo;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNombre_archivo(String nombre_archivo) {
-		this.nombre_archivo = nombre_archivo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTexto_presentacion() {
@@ -124,7 +124,7 @@ public class Curriculum  extends Plantilla{
 		return experienciaLaboral;
 	}
 
-	public void setIxperienciaLaboral(List<ExperienciaLaboral> experienciaLaboral) {
+	public void setExperienciaLaboral(List<ExperienciaLaboral> experienciaLaboral) {
 		this.experienciaLaboral = experienciaLaboral;
 	}
 
@@ -142,10 +142,8 @@ public class Curriculum  extends Plantilla{
 
 	@Override
 	public String toString() {
-		return "Curriculum [nombre_archivo=" + nombre_archivo + ", texto_presentacion=" + texto_presentacion
-				+ ", imagen=" + imagen + "]";
+		return "Curriculum [id=" + id + ", texto_presentacion=" + texto_presentacion + ", imagen=" + imagen + "]";
 	}
-	
 	
 	
 }

@@ -1,10 +1,16 @@
-package dto;
+package main.dto;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -15,7 +21,7 @@ public class Secciones {
 	// Atributos
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -25,11 +31,11 @@ public class Secciones {
 	
 	@OneToOne
 	@JoinColumn(name="nombre_archivo")
-	private Cartas_restaurantes cartas_restaurantes;
+	private CartasRestaurantes cartas_restaurantes;
 
 	@OneToMany
 	@JoinColumn(name="platos")
-	private List<Platos> plato;
+	private List<Plato> platos;
 	
 	// ----------------------CONSTRUCTORES---------------------------
 	
@@ -37,13 +43,14 @@ public class Secciones {
 			
 		}
 
-		public Secciones(Long id, String nombre, String imagen, Cartas_restaurantes cartas_restaurantes) {
+		public Secciones(Long id, String nombre, String imagen, CartasRestaurantes cartas_restaurantes) {
 			//super();
 			this.id = id;
 			this.nombre = nombre;
 			this.imagen = imagen;
 			this.cartas_restaurantes = cartas_restaurantes;
 		}
+		
 		// -----------------------GETTERS Y SETTERS-----------------------------
 
 		public Long getId() {
@@ -70,11 +77,11 @@ public class Secciones {
 			this.imagen = imagen;
 		}
 	
-		public Cartas_restaurantes getCartas() {
+		public CartasRestaurantes getCartas() {
 			return cartas_restaurantes;
 		}
 
-		public void setCartas(Cartas_restaurantes cartas_restaurantes) {
+		public void setCartas(CartasRestaurantes cartas_restaurantes) {
 			this.cartas_restaurantes = cartas_restaurantes;
 		}
 		
@@ -82,6 +89,7 @@ public class Secciones {
 		
 		@Override
 		public String toString() {
-			return "Menu [id=" + id + "nombre=" + nombre + ", imagen=" + imagen + ", nombre_archivo=" + cartas_restaurantes + "]";
+			return "Menu [id=" + id + "nombre=" + nombre + ", imagen=" + imagen + ", cartas_restaurantes=" + cartas_restaurantes + "]";
 		}
 		
+}

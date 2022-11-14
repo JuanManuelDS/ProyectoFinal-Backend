@@ -21,38 +21,36 @@ public class Listado extends Plantilla{
 	// Atributos
 	@Id
 	@OneToOne
-	@JoinColumn(name="nombre_archivo")
-	private String nombre_archivo;
+	@JoinColumn(name="id")
+	private Long id;
 
 	@Column
 	private String titulo;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn
 	private List<Entrada> entradas;
-
-	
 
 	// ----------------------CONSTRUCTORES---------------------------
 	
 		public Listado() {
-			this.nombre_archivo = super.getNombre_archivo();
+			this.id = super.getId();
 		}
 
 		public Listado(String titulo) {
 			super();
-			this.nombre_archivo = super.getNombre_archivo();
+			this.id = super.getId();
 			this.titulo = titulo;
 		}
 
 		// -----------------------GETTERS Y SETTERS-----------------------------
-		
-		public String getNombre_archivo() {
-			return nombre_archivo;
+
+		public Long getId() {
+			return id;
 		}
 
-		public void setNombre_archivo(String nombre_archivo) {
-			this.nombre_archivo = nombre_archivo;
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public String getTitulo() {
@@ -77,7 +75,6 @@ public class Listado extends Plantilla{
 		
 		@Override
 		public String toString() {
-			return "Listadp [nombre_archivo=" + nombre_archivo + ", titulo=" + titulo
-					+ "]";
+			return "Listado [id=" + id + ", titulo=" + titulo + "]";
 		}
 }

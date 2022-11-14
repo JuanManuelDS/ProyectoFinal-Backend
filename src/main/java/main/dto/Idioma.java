@@ -1,7 +1,9 @@
-package dto;
+package main.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,34 +12,34 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "idiomas")
-public class Idiomas {
+public class Idioma {
 
 	// Atributos
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name = "idioma")
 	private String idioma;
 	
-	@Column(name = "nivel_escrito ")
-	private String nivel_escrito ;
+	@Column(name = "nivel_escrito")
+	private String nivel_escrito;
 	
-	@Column(name = "nivel_oral  ")
-	private String nivel_oral  ;
+	@Column(name = "nivel_oral")
+	private String nivel_oral;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="curriculum")
 	private Curriculum curriculum;
 
 
 	// ----------------------CONSTRUCTORES---------------------------
 	
-	public Idiomas() {
+	public Idioma() {
 		
 	}
 
-	public Idiomas(Long id, String idioma, String nivel_escrito, String nivel_oral, Curriculum curriculum) {
+	public Idioma(Long id, String idioma, String nivel_escrito, String nivel_oral, Curriculum curriculum) {
 		//super();
 		this.id = id;
 		this.idioma = idioma;
@@ -94,3 +96,4 @@ public class Idiomas {
 		return "Idiomas [id=" + id + "idioma=" + idioma + ", nivel escrito=" + nivel_escrito + ", nivel oral=" + nivel_oral + ", curriculum=" + curriculum + "]";
 	}
 	
+}

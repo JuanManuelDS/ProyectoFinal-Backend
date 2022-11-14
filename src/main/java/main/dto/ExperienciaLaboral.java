@@ -41,12 +41,12 @@ public class ExperienciaLaboral {
 	// ----------------------CONSTRUCTORES---------------------------
 	
 	public ExperienciaLaboral() {
-		super();
+		//super();
 	}
 
 	public ExperienciaLaboral(Long id, String puesto, String descripcion, Date fecha_inicio, Date fecha_fin,
 			Curriculum curriculum) {
-		super();
+		//super();
 		this.id = id;
 		this.puesto = puesto;
 		this.descripcion = descripcion;
@@ -54,8 +54,6 @@ public class ExperienciaLaboral {
 		this.fecha_fin = fecha_fin;
 		this.curriculum = curriculum;
 	}
-	
-	// Constructor los Super Fields
 	
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
