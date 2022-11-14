@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Estudios;
+import main.dto.Estudios;
 
 public interface IEstudiosService {
 	

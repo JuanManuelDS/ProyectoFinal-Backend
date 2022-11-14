@@ -1,17 +1,17 @@
 package main.services;
 
 import java.util.List;
-import dto.CartaRestaurante;
+import main.dto.CartasRestaurantes;
 
 public interface ICartaRestauranteService {
 
-	public List<CartaRestaurante> listarCartasRestaurantes();
+	public List<CartasRestaurantes> listarCartasRestaurantes();
 
-	public CartaRestaurante buscarCartaRestaurante(Long id);
+	public CartasRestaurantes buscarCartaRestaurante(Long id);
 
-	public CartaRestaurante guardarCartaRestaurante(CartaRestaurante cartaRestaurante);
+	public CartasRestaurantes guardarCartaRestaurante(CartasRestaurantes cartaRestaurante);
 
-	public CartaRestaurante actualizarCartaRestaurante(CartaRestaurante cartaRestaurante);
+	public CartasRestaurantes actualizarCartaRestaurante(CartasRestaurantes cartaRestaurante);
 
 	public void eliminarCartaRestaurante(Long id);
 

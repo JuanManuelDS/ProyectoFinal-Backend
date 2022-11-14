@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import main.dao.ICurriculumDAO;
+import main.dto.Curriculum;
 
 public class CurriculumServices implements ICurriculumServices {
 

@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.ExperienciaLaboral;
+import main.dto.ExperienciaLaboral;
 
 public interface IExperienciaLaboralServices {
 	

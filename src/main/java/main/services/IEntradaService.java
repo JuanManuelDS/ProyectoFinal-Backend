@@ -1,6 +1,8 @@
 package main.services;
 
-import dto.Entrada;
+import java.util.List;
+
+import main.dto.Entrada;
 
 public interface IEntradaService {
 

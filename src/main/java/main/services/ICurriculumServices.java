@@ -1,7 +1,8 @@
 package main.services;
 
 import java.util.List;
-import dto.Curriculum;
+
+import main.dto.Curriculum;
 
 public interface ICurriculumServices {
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import main.dao.IDatosDAO;
+import main.dto.Datos;
 
 public class DatosServices implements IDatosServices{
 
@@ -12,20 +13,25 @@ public class DatosServices implements IDatosServices{
 	IDatosDAO iDatosDAO;
 	
 	@Override
-	public List<DatosServices> listarDatos() {
+	public List<Datos> listarDatos() {
 		
 		return iDatosDAO.findAll();
 	}
 
 	@Override
-	public DatosServices buscarDatos(Long id) {
+	public Datos buscarDatos(Long id) {
 		return iDatosDAO.findById(id);
 				
 	}
 
 	@Override
-	public DatosServices guardarDatos(DatosServices datos) {
+	public Datos guardarDatos(Datos datos) {
 		
+		return iDatosDAO.save(datos);
+	}
+	
+	@Override
+	public Datos actualizarDatos(Datos datos) {
 		return iDatosDAO.save(datos);
 	}
 
@@ -35,5 +41,6 @@ public class DatosServices implements IDatosServices{
 		iDatosDAO.deleteById(id);
 		
 	}
+
 
 }
