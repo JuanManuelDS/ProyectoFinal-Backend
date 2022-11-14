@@ -2,18 +2,17 @@ package main.services;
 
 import java.util.List;
 
-import dto.PlatoMenu;
+import main.dto.PlatoMenus;
 
-//Esta clase tiene 2 primary keys. Hay que modificar los métodos
 public interface IPlatoMenuServices {
 
-	public List<PlatoMenu> listarPlatoMenus();
+	public List<PlatoMenus> listarPlatoMenus();
 	
-	public PlatoMenu buscarPlatoMenu(Long id);
+	public PlatoMenus buscarPlatoMenu(Long id);
 	
-	public PlatoMenu guardarPlatoMenu(PlatoMenu platoMenu);
+	public PlatoMenus guardarPlatoMenu(PlatoMenus platoMenu);
 	
-	public PlatoMenu actualizarPlatoMenu(PlatoMenu platoMenu);
+	public PlatoMenus actualizarPlatoMenu(PlatoMenus platoMenu);
 	
 	public void eliminarPlatoMenu(Long id);
 	

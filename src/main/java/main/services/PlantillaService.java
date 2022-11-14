@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.IPlantillaDAO;
+import main.dto.Plantilla;
 
 @Service
 public class PlantillaService implements IPlantillaServices {

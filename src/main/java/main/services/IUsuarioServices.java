@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Usuario;
+import main.dto.Usuario;
 
 public interface IUsuarioServices {
 

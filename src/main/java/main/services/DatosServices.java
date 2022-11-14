@@ -3,10 +3,12 @@ package main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IDatosDAO;
 import main.dto.Datos;
 
+@Service
 public class DatosServices implements IDatosServices{
 
 	@Autowired
@@ -20,7 +22,7 @@ public class DatosServices implements IDatosServices{
 
 	@Override
 	public Datos buscarDatos(Long id) {
-		return iDatosDAO.findById(id);
+		return iDatosDAO.findById(id).get();
 				
 	}
 

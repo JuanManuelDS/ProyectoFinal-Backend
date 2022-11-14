@@ -3,9 +3,12 @@ package main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IExperienciaLaboralDAO;
+import main.dto.ExperienciaLaboral;
 
+@Service
 public class ExperienciaLaboralService implements IExperienciaLaboralServices {
 
 	@Autowired IExperienciaLaboralDAO iExperienciaLaboralDAO;
@@ -19,7 +22,7 @@ public class ExperienciaLaboralService implements IExperienciaLaboralServices {
 	@Override
 	public ExperienciaLaboral buscarExperienciaLaboral(Long id) {
 		
-		return iExperienciaLaboralDAO.findById(id);
+		return iExperienciaLaboralDAO.findById(id).get();
 	}
 
 	@Override

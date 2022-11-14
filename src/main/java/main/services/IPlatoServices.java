@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Plato;
+import main.dto.Plato;
 
 public interface IPlatoServices {
 

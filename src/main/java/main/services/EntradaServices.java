@@ -1,9 +1,14 @@
 package main.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IEntradaDAO;
+import main.dto.Entrada;
 
+@Service
 public class EntradaServices implements IEntradaService {
 
 	@Autowired
@@ -18,7 +23,7 @@ public class EntradaServices implements IEntradaService {
 	@Override
 	public Entrada buscarEntrada(Long id) {
 		
-		return iEntradaDAO.findById(id);
+		return iEntradaDAO.findById(id).get();
 	}
 
 	@Override

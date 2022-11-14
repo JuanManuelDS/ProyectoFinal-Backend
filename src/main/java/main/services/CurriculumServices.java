@@ -3,10 +3,12 @@ package main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.ICurriculumDAO;
 import main.dto.Curriculum;
 
+@Service
 public class CurriculumServices implements ICurriculumServices {
 
 	@Autowired
@@ -20,7 +22,7 @@ public class CurriculumServices implements ICurriculumServices {
 	@Override
 	public Curriculum buscarCurriculum(Long id) {
 
-		return iCurriculumDAO.findById(id);
+		return iCurriculumDAO.findById(id).get();
 	}
 
 	@Override

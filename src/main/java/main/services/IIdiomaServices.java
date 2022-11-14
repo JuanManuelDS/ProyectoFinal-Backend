@@ -1,6 +1,8 @@
 package main.services;
 
-import dto.Idioma;
+import java.util.List;
+
+import main.dto.Idioma;
 
 public interface IIdiomaServices {
 	

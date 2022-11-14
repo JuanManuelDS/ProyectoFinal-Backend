@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Otro;
+import main.dto.Otro;
 
 public interface IOtroServices {
 

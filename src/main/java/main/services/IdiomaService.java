@@ -1,9 +1,14 @@
 package main.services;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IIdiomasDAO;
-
+import main.dto.Idioma;
+@Service
 public class IdiomaService implements IIdiomaServices{
 
 	@Autowired
@@ -18,7 +23,7 @@ public class IdiomaService implements IIdiomaServices{
 	@Override
 	public Idioma buscarIdioma(Long id) {
 		
-		return iIdiomasDAO.findById(id);
+		return iIdiomasDAO.findById(id).get();
 	}
 
 	@Override

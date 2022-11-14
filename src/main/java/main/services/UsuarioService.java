@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.IUsuarioDAO;
+import main.dto.Usuario;
 
 @Service
 public class UsuarioService implements IUsuarioServices{

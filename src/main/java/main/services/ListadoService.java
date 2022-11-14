@@ -3,9 +3,12 @@ package main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IListadoDAO;
+import main.dto.Listado;
 
+@Service
 public class ListadoService implements IListadoServices{
 
 	@Autowired
@@ -20,7 +23,7 @@ public class ListadoService implements IListadoServices{
 	@Override
 	public Listado buscarListado(Long id) {
 		
-		return iListadoDAO.findById(id);
+		return iListadoDAO.findById(id).get();
 	}
 
 	@Override

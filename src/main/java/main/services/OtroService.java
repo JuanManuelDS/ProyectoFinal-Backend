@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.IOtroDAO;
+import main.dto.Otro;
 
 @Service
 public class OtroService implements IOtroServices {

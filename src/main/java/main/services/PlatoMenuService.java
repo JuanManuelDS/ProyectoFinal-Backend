@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.IPlatoMenuDAO;
+import main.dto.PlatoMenus;
 
 @Service
 public class PlatoMenuService implements IPlatoMenuServices {
@@ -14,25 +15,25 @@ public class PlatoMenuService implements IPlatoMenuServices {
 	IPlatoMenuDAO iPlatoMenuDAO;
 
 	@Override
-	public List<PlatoMenu> listarPlatoMenus() {
+	public List<PlatoMenus> listarPlatoMenus() {
 		// TODO Auto-generated method stub
 		return iPlatoMenuDAO.findAll();
 	}
 
 	@Override
-	public PlatoMenu buscarPlatoMenu(Long id) {
+	public PlatoMenus buscarPlatoMenu(Long id) {
 		// TODO Auto-generated method stub
 		return iPlatoMenuDAO.findById(id).get();
 	}
 
 	@Override
-	public PlatoMenu guardarPlatoMenu(PlatoMenu platoMenu) {
+	public PlatoMenus guardarPlatoMenu(PlatoMenus platoMenu) {
 		// TODO Auto-generated method stub
 		return iPlatoMenuDAO.save(platoMenu);
 	}
 
 	@Override
-	public PlatoMenu actualizarPlatoMenu(PlatoMenu platoMenu) {
+	public PlatoMenus actualizarPlatoMenu(PlatoMenus platoMenu) {
 		// TODO Auto-generated method stub
 		return iPlatoMenuDAO.save(platoMenu);
 	}

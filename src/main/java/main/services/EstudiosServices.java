@@ -3,9 +3,12 @@ package main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.IEstudiosDAO;
+import main.dto.Estudios;
 
+@Service
 public class EstudiosServices implements IEstudiosService{
 
 	@Autowired
@@ -20,7 +23,7 @@ public class EstudiosServices implements IEstudiosService{
 	@Override
 	public Estudios buscarEstudios(Long id) {
 		
-		return iEstudiosDAO.findById(id);
+		return iEstudiosDAO.findById(id).get();
 	}
 
 	@Override

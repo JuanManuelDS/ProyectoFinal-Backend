@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Menu;
+import main.dto.Menu;
 
 public interface IMenuServices {
 

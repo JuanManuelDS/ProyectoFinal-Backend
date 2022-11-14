@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.ISeccionDAO;
+import main.dto.Secciones;
+
 
 @Service
 public class SeccionService implements ISeccionServices{
@@ -14,25 +16,25 @@ public class SeccionService implements ISeccionServices{
 	ISeccionDAO iSeccionDAO;
 	
 	@Override
-	public List<Seccion> listarSecciones() {
+	public List<Secciones> listarSecciones() {
 		// TODO Auto-generated method stub
 		return iSeccionDAO.findAll();
 	}
 
 	@Override
-	public Seccion buscarSeccion(Long id) {
+	public Secciones buscarSeccion(Long id) {
 		// TODO Auto-generated method stub
 		return iSeccionDAO.findById(id).get();
 	}
 
 	@Override
-	public Seccion guardarSeccion(Seccion seccion) {
+	public Secciones guardarSeccion(Secciones seccion) {
 		// TODO Auto-generated method stub
 		return iSeccionDAO.save(seccion);
 	}
 
 	@Override
-	public Seccion actualizarSeccion(Seccion seccion) {
+	public Secciones actualizarSeccion(Secciones seccion) {
 		// TODO Auto-generated method stub
 		return iSeccionDAO.save(seccion);
 	}

@@ -2,7 +2,7 @@ package main.services;
 
 import java.util.List;
 
-import dto.Listado;
+import main.dto.Listado;
 
 public interface IListadoServices {
 

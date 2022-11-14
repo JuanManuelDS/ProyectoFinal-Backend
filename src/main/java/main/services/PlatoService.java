@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.IPlatoDAO;
+import main.dto.Plato;
 
 @Service
 public class PlatoService implements IPlatoServices{
