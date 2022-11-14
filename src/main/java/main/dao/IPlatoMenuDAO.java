@@ -2,10 +2,8 @@ package main.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dto.PlatoMenu;
+import main.dto.PlatoMenus;
 
-//La tabla plato menú tiene 2 primary key por ende no se cómo sería.
-public interface IPlatoMenuDAO extends JpaRepository<PlatoMenu, Long>{
+public interface IPlatoMenuDAO extends JpaRepository<PlatoMenus, Long>{
 
 }
-//Hola

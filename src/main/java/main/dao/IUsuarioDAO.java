@@ -2,7 +2,7 @@ package main.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dto.Usuario;
+import main.dto.Usuario;
 
 public interface IUsuarioDAO extends JpaRepository<Usuario, String>{
 
