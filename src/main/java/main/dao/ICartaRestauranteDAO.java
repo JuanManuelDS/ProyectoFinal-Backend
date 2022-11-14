@@ -2,8 +2,8 @@ package main.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dto.CartaRestaurante;
+import main.dto.CartasRestaurantes;
 
-public interface ICartaRestauranteDAO extends JpaRepository<CartaRestaurante, Long>{
+public interface ICartaRestauranteDAO extends JpaRepository<CartasRestaurantes, Long>{
 
 }

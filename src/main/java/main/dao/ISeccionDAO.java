@@ -2,8 +2,8 @@ package main.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dto.Seccion;
+import main.dto.Secciones;
 
-public interface ISeccionDAO extends JpaRepository<Seccion, Long>{
+public interface ISeccionDAO extends JpaRepository<Secciones, Long>{
 
 }
