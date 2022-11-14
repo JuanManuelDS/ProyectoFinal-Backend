@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import dto.Curriculum;
 
-public interface ICurriculumDAO extends JpaRepository<Curriculum, String>{
+public interface ICurriculumDAO extends JpaRepository<Curriculum, Long>{
 
 }
