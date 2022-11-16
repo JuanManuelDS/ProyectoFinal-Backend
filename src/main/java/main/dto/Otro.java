@@ -23,7 +23,7 @@ public class Otro {
 	private String descripcion;
 	
 	@ManyToOne
-	@JoinColumn(name = "nombre_archivo")
+	@JoinColumn(name = "curriculum")
 	private Curriculum curriculum;
 
 	// ----------------------CONSTRUCTORES---------------------------

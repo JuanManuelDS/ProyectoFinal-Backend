@@ -35,7 +35,7 @@ public class ExperienciaLaboral {
     private Date fecha_fin;
 	
 	@ManyToOne
-	@JoinColumn(name = "nombre_archivo")
+	@JoinColumn(name = "curriculum")
 	private Curriculum curriculum;
 	
 	// ----------------------CONSTRUCTORES---------------------------
