@@ -28,7 +28,6 @@ public class Entrada {
 	private Listado listado;
 
 	public Entrada(Long id, String nombre, Long unidades, Listado listado) {
-		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.unidades = unidades;
