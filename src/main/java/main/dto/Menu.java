@@ -36,7 +36,7 @@ public class Menu {
 
 	@ManyToOne
 	@JoinColumn(name = "carta")
-	private CartaRestaurante carta;
+	private CartaRestaurante cartaRestaurante;
 
 	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
 	private List<PlatoMenu> platoMenus;
@@ -53,7 +53,7 @@ public class Menu {
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.precioMenu = precio_menu;
-		this.carta = cartas_restaurantes;
+		this.cartaRestaurante = cartas_restaurantes;
 	}
 
 	// -----------------------GETTERS Y SETTERS-----------------------------
@@ -91,11 +91,11 @@ public class Menu {
 	}
 
 	public CartaRestaurante getCarta() {
-		return carta;
+		return cartaRestaurante;
 	}
 
 	public void setCarta(CartaRestaurante carta) {
-		this.carta = carta;
+		this.cartaRestaurante = carta;
 	}
 
 	@JsonIgnore
@@ -114,7 +114,7 @@ public class Menu {
 	@Override
 	public String toString() {
 		return "Menu [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", precioMenu=" + precioMenu
-				+ ", carta=" + carta + ", platoMenus=" + platoMenus + "]";
+				+ ", carta=" + cartaRestaurante + ", platoMenus=" + platoMenus + "]";
 	}
 
 }

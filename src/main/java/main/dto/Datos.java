@@ -48,7 +48,6 @@ public class Datos {
 	
 	public Datos(Long id, String nombre, String apellidos, int edad, String email, String telefono,
 			String codigo_postal, String ciudad, Curriculum curriculum) {
-		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;

@@ -39,7 +39,7 @@ public class Curriculum {
 	private List<Estudios> estudios;
 	
 	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
-	private Datos datos;
+	private List<Datos> datos;
 	
 	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private List<Otro> otros;
@@ -100,11 +100,11 @@ public class Curriculum {
 
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
-	public Datos getDatos() {
+	public List<Datos> getDatos() {
 		return datos;
 	}
 
-	public void setDatos(Datos datos) {
+	public void setDatos(List<Datos> datos) {
 		this.datos = datos;
 	}
 

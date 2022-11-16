@@ -30,7 +30,7 @@ public class CartaRestaurante {
 	
 	@ManyToOne
 	@JoinColumn(name="plantilla")
-	private Long plantilla;
+	private Plantilla plantilla;
 	
 	@OneToMany(mappedBy = "cartaRestaurante", cascade = CascadeType.ALL)
 	private List<Menu> menus;
@@ -45,7 +45,7 @@ public class CartaRestaurante {
 		
 	}
 
-	public CartaRestaurante(Long id, String nombre_restaurante, Long plantilla, List<Menu> menus,
+	public CartaRestaurante(Long id, String nombre_restaurante, Plantilla plantilla, List<Menu> menus,
 			List<Seccion> secciones) {
 		this.id = id;
 		this.nombre_restaurante = nombre_restaurante;
@@ -89,6 +89,13 @@ public class CartaRestaurante {
 		this.secciones = secciones;
 	}
 
+	public Plantilla getPlantilla() {
+		return plantilla;
+	}
+
+	public void setPlantilla(Plantilla plantilla) {
+		this.plantilla = plantilla;
+	}
 
 	// --------------------------------TOSTRING-------------------------------
 	@Override
