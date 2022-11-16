@@ -43,4 +43,16 @@ public class UsuarioService implements IUsuarioServices{
 		// TODO Auto-generated method stub
 		iUsuarioDAO.deleteById(id);
 	}
+
+	@Override
+	public Usuario buscarUsuarioPorEmail(String email) {
+		// TODO Auto-generated method stub
+		return iUsuarioDAO.findByEmail(email);
+	}
+
+	@Override
+	public Usuario buscarUsuarioPorNombreUsuario(String nombreUsuario) {
+		// TODO Auto-generated method stub
+		return iUsuarioDAO.findByNombreUsuario(nombreUsuario);
+	}
 }

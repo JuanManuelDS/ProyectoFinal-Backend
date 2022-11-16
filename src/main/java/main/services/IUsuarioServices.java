@@ -10,6 +10,10 @@ public interface IUsuarioServices {
 	
 	public Usuario buscarUsuario(Long id);
 	
+	public Usuario buscarUsuarioPorEmail(String email);
+	
+	public Usuario buscarUsuarioPorNombreUsuario(String nombreUsuario);
+	
 	public Usuario guardarUsuario(Usuario usuario);
 	
 	public Usuario actualizarUsuario(Usuario usuario);

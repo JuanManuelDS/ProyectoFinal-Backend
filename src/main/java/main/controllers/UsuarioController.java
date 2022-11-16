@@ -32,6 +32,16 @@ public class UsuarioController {
 		return usuarioService.buscarUsuario(id);
 	}
 	
+	@GetMapping("/usuarios/email/{email}")
+	public Usuario buscarUsuarioEmail(@PathVariable(name="email")String email) {
+		return usuarioService.buscarUsuarioPorEmail(email);
+	}
+	
+	@GetMapping("/usuarios/nombre/{nombreUsuario}")
+	public Usuario buscarUsuarioNombre(@PathVariable(name="nombreUsuario") String nombreUsuario) {
+		return usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+	}
+	
 	@PostMapping("/usuarios")
 	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.guardarUsuario(usuario);
@@ -41,7 +51,7 @@ public class UsuarioController {
 	public Usuario actualizarUsuario(@PathVariable(name = "id") Long id, @RequestBody Usuario usuario) {
 		Usuario usuarioSeleccionado = usuarioService.buscarUsuario(id);
 		
-		usuarioSeleccionado.setNombre_usuario(usuario.getNombre_usuario());
+		usuarioSeleccionado.setNombreUsuario(usuario.getNombreUsuario());
 		usuarioSeleccionado.setEmail(usuario.getEmail());
 		usuarioSeleccionado.setContrasena(usuario.getContrasena());
 		

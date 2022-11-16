@@ -27,7 +27,7 @@ public class Usuario {
 	private String email;
 	
 	@Column(name = "nombre_usuario")
-	private String nombre_usuario;
+	private String nombreUsuario;
 	
 	@Column(name = "contrasena")
 	private String contrasena;
@@ -42,11 +42,11 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(Long id, String email, String nombre_usuario, String contrasena, List<Plantilla> plantillas) {
+	public Usuario(Long id, String email, String nombreUsuario, String contrasena, List<Plantilla> plantillas) {
 		//super();
 		this.id = id;
 		this.email = email;
-		this.nombre_usuario = nombre_usuario;
+		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.plantillas = plantillas;
 	}
@@ -69,12 +69,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getNombre_usuario() {
-		return nombre_usuario;
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public void setNombre_usuario(String nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getContrasena() {
@@ -99,7 +99,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", nombre_usuario=" + nombre_usuario + ", contrasena="
+		return "Usuario [id=" + id + ", email=" + email + ", nombre usuario=" + nombreUsuario + ", contrasena="
 				+ contrasena + ", plantillas=" + plantillas + "]";
 	}
 
