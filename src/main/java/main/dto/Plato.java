@@ -38,7 +38,7 @@ public class Plato {
 		
 		@ManyToOne
 		@JoinColumn
-		private Secciones seccion;
+		private Seccion seccion;
 		
 		@OneToMany
 		@JoinColumn
@@ -50,7 +50,7 @@ public class Plato {
 			
 		}
 
-		public Plato(Long id, String nombre, String imagen, String descripcion, int precio, Secciones seccion) {
+		public Plato(Long id, String nombre, String imagen, String descripcion, int precio, Seccion seccion) {
 			this.id = id;
 			this.nombre = nombre;
 			this.imagen = imagen;
@@ -101,11 +101,11 @@ public class Plato {
 			this.precio = precio;
 		}
 
-		public Secciones getSeccion() {
+		public Seccion getSeccion() {
 			return seccion;
 		}
 
-		public void setSeccion(Secciones seccion) {
+		public void setSeccion(Seccion seccion) {
 			this.seccion = seccion;
 		}
 		

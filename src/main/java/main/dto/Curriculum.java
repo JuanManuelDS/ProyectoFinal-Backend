@@ -2,11 +2,15 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,11 +19,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="curriculums")
-public class Curriculum  extends Plantilla{
+public class Curriculum {
 	
 	@Id
-	@OneToOne
-	@JoinColumn(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
@@ -28,40 +31,37 @@ public class Curriculum  extends Plantilla{
 	@Column
 	private String imagen;
 	
-	@OneToMany
-	@JoinColumn(name="nombre_archivo")
+	@ManyToOne
+	@JoinColumn(name="plantilla")
+	private Plantilla plantilla;
+	
+	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private List<Estudios> estudios;
 	
-	@OneToOne
-	@JoinColumn(name="nombre_archivo")
+	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private Datos datos;
 	
-	@OneToMany
-	@JoinColumn(name="nombre_archivo")
+	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private List<Otro> otros;
 	
-	@OneToMany
-	@JoinColumn(name="nombre_archivo")
+	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private List<ExperienciaLaboral> experienciaLaboral;
 	
-	@OneToMany
-	@JoinColumn(name="nombre_archivo")
+	@OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
 	private List<Idioma> idioma;
 	
 	// ----------------------CONSTRUCTORES---------------------------
 	
 	public Curriculum() {
-		// TODO Auto-generated constructor stub
-		this.id = super.getId();
+		
 	}
-
-	public Curriculum(String texto_presentacion, String imagen) {
-		//super();
-		this.id = super.getId();
+	
+	public Curriculum(Long id, String texto_presentacion, String imagen) {
+		this.id = id;
 		this.texto_presentacion = texto_presentacion;
 		this.imagen = imagen;
 	}
-	
+
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
 	public Long getId() {
@@ -89,7 +89,7 @@ public class Curriculum  extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Estudios")
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<Estudios> getEstudios() {
 		return estudios;
 	}
@@ -99,7 +99,7 @@ public class Curriculum  extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "Datos")
+	@OneToOne(fetch = FetchType.LAZY)
 	public Datos getDatos() {
 		return datos;
 	}
@@ -109,7 +109,7 @@ public class Curriculum  extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Otro")
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<Otro> getOtros() {
 		return otros;
 	}
@@ -119,7 +119,7 @@ public class Curriculum  extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ExperienciaLaboral")
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<ExperienciaLaboral> getExperienciaLaboral() {
 		return experienciaLaboral;
 	}
@@ -129,7 +129,7 @@ public class Curriculum  extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Idioma")
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<Idioma> getIdioma() {
 		return idioma;
 	}
@@ -137,13 +137,15 @@ public class Curriculum  extends Plantilla{
 	public void setIdioma(List<Idioma> idioma) {
 		this.idioma = idioma;
 	}
+
 	
 	// --------------------------------TOSTRING-------------------------------
 
 	@Override
 	public String toString() {
-		return "Curriculum [id=" + id + ", texto_presentacion=" + texto_presentacion + ", imagen=" + imagen + "]";
+		return "Curriculum [id=" + id + ", texto_presentacion=" + texto_presentacion + ", imagen=" + imagen
+				+ ", plantilla=" + plantilla + ", estudios=" + estudios + ", datos=" + datos + ", otros=" + otros
+				+ ", experienciaLaboral=" + experienciaLaboral + ", idioma=" + idioma + "]";
 	}
-	
 	
 }

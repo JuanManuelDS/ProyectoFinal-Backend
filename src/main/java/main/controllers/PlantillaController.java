@@ -41,7 +41,7 @@ public class PlantillaController {
 	public Plantilla actualizarPlantilla(@PathVariable(name = "id") Long id, @RequestBody Plantilla plantilla) {
 		Plantilla plantillaSeleccionada = plantillaService.buscarPlantilla(id);
 		
-		plantillaSeleccionada.setNombre_archivo(plantilla.getNombre_archivo());
+		plantillaSeleccionada.setNombreArchivo(plantilla.getNombre_archivo());
 		plantillaSeleccionada.setFirma(plantilla.getFirma());
 		plantillaSeleccionada.setUsuario(plantilla.getUsuario());
 		

@@ -2,79 +2,93 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="listado")
-public class Listado extends Plantilla{
+@Table(name = "listado")
+public class Listado {
 
 	// Atributos
 	@Id
-	@OneToOne
-	@JoinColumn(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
 	private String titulo;
+
+	@ManyToOne
+	@JoinColumn(name="plantilla")
+	private Plantilla plantilla;
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "listado", cascade = CascadeType.ALL)
 	private List<Entrada> entradas;
 
 	// ----------------------CONSTRUCTORES---------------------------
+
+	public Listado() {
+	}
+
+	public Listado(Long id, String titulo, Plantilla plantilla, List<Entrada> entradas) {
+		this.id = id;
+		this.titulo = titulo;
+		this.plantilla = plantilla;
+		this.entradas = entradas;
+	}
+
+	// -----------------------GETTERS Y SETTERS-----------------------------
+
 	
-		public Listado() {
-			this.id = super.getId();
-		}
+	public String getTitulo() {
+		return titulo;
+	}
 
-		public Listado(String titulo) {
-			super();
-			this.id = super.getId();
-			this.titulo = titulo;
-		}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-		// -----------------------GETTERS Y SETTERS-----------------------------
+	public Plantilla getPlantilla() {
+		return plantilla;
+	}
 
-		public Long getId() {
-			return id;
-		}
+	public void setPlantilla(Plantilla plantilla) {
+		this.plantilla = plantilla;
+	}
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY)
+	public List<Entrada> getEntradas() {
+		return entradas;
+	}
 
-		public String getTitulo() {
-			return titulo;
-		}
+	public void setEntradas(List<Entrada> entradas) {
+		this.entradas = entradas;
+	}
 
-		public void setTitulo(String titulo) {
-			this.titulo = titulo;
-		}
-		
-		@JsonIgnore
-		@OneToMany(fetch = FetchType.LAZY, mappedBy = "Entrada")
-		public List<Entrada> getEntradas() {
-			return entradas;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public void setEntradas(List<Entrada> entradas) {
-			this.entradas = entradas;
-		}
-		
-		// --------------------------------TOSTRING-------------------------------
-		
-		@Override
-		public String toString() {
-			return "Listado [id=" + id + ", titulo=" + titulo + "]";
-		}
+
+	// --------------------------------TOSTRING-------------------------------
+
+	
+	@Override
+	public String toString() {
+		return "Listado [id=" + id + ", titulo=" + titulo + ", plantilla=" + plantilla + ", entradas=" + entradas + "]";
+	}
+
+	
+	
 }

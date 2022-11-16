@@ -2,17 +2,17 @@ package main.services;
 
 import java.util.List;
 
-import main.dto.Secciones;
+import main.dto.Seccion;
 
 public interface ISeccionServices {
 
-	public List<Secciones> listarSecciones();
+	public List<Seccion> listarSecciones();
 	
-	public Secciones buscarSeccion(Long id);
+	public Seccion buscarSeccion(Long id);
 	
-	public Secciones guardarSeccion(Secciones seccion);
+	public Seccion guardarSeccion(Seccion seccion);
 	
-	public Secciones actualizarSeccion(Secciones seccion);
+	public Seccion actualizarSeccion(Seccion seccion);
 	
 	public void eliminarSeccion(Long id);
 	

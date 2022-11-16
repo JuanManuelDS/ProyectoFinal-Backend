@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "secciones")
-public class Secciones {
+public class Seccion {
 
 	// Atributos
 	@Id
@@ -39,11 +39,11 @@ public class Secciones {
 	
 	// ----------------------CONSTRUCTORES---------------------------
 	
-		public Secciones() {
+		public Seccion() {
 			
 		}
 
-		public Secciones(Long id, String nombre, String imagen, CartasRestaurantes cartas_restaurantes) {
+		public Seccion(Long id, String nombre, String imagen, CartasRestaurantes cartas_restaurantes) {
 			//super();
 			this.id = id;
 			this.nombre = nombre;

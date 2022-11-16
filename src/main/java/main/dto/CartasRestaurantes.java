@@ -2,60 +2,63 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="cartas_restaurantes")
-public class CartasRestaurantes extends Plantilla{
+public class CartasRestaurantes {
 
 	// Atributos
 	@Id
-	@OneToOne
-	@JoinColumn(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
 	private String nombre_restaurante;
 	
-	@OneToMany
-	@JoinColumn
+	@ManyToOne
+	@JoinColumn(name="plantilla")
+	private Long plantilla;
+	
+	@OneToMany(mappedBy = "cartaRestaurante", cascade = CascadeType.ALL)
 	private List<Menu> menus;
 	
-	@OneToMany
-	@JoinColumn
-	private List<Secciones> secciones;
+	@OneToMany(mappedBy = "cartaRestaurante", cascade = CascadeType.ALL)
+	private List<Seccion> secciones;
 	
 
 	// ----------------------CONSTRUCTORES---------------------------
 	
 	public CartasRestaurantes() {
-		this.id = super.getId();
+		
 	}
 
-	public CartasRestaurantes(String nombre_restaurante) {
-		super();
-		this.id = super.getId();
+	public CartasRestaurantes(Long id, String nombre_restaurante, Long plantilla, List<Menu> menus,
+			List<Seccion> secciones) {
+		this.id = id;
 		this.nombre_restaurante = nombre_restaurante;
+		this.plantilla = plantilla;
+		this.menus = menus;
+		this.secciones = secciones;
 	}
+
 
 	// -----------------------GETTERS Y SETTERS-----------------------------
 	
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNombre_restaurante() {
@@ -67,7 +70,7 @@ public class CartasRestaurantes extends Plantilla{
 	}
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Menu")
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<Menu> getMenus() {
 		return menus;
 	}
@@ -77,19 +80,23 @@ public class CartasRestaurantes extends Plantilla{
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Secciones")
-	public List<Secciones> getSecciones() {
+	@OneToMany(fetch = FetchType.LAZY)
+	public List<Seccion> getSecciones() {
 		return secciones;
 	}
 
-	public void setSecciones(List<Secciones> secciones) {
+	public void setSecciones(List<Seccion> secciones) {
 		this.secciones = secciones;
 	}
 
+
 	// --------------------------------TOSTRING-------------------------------
-	
 	@Override
 	public String toString() {
-		return "CartasRestaurantes [id=" + id + ", nombre_restaurante=" + nombre_restaurante + "]";
+		return "CartasRestaurantes [id=" + id + ", nombre_restaurante=" + nombre_restaurante + ", plantilla="
+				+ plantilla + ", menus=" + menus + ", secciones=" + secciones + "]";
 	}
+
+	
+	
 }
