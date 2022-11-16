@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.dto.PlatoMenus;
+import main.dto.PlatoMenu;
 import main.services.PlatoMenuService;
 
 @RestController
@@ -23,23 +23,23 @@ public class PlatoMenuController {
 	PlatoMenuService platoMenuService;
 	
 	@GetMapping("/platoMenus")
-	public List<PlatoMenus> listarPlatoMenus(){
+	public List<PlatoMenu> listarPlatoMenus(){
 		return platoMenuService.listarPlatoMenus();
 	}
 	
 	@GetMapping("/platoMenus/{id}")
-	public PlatoMenus buscarPlatoMenu(@PathVariable(name = "id") Long id) {
+	public PlatoMenu buscarPlatoMenu(@PathVariable(name = "id") Long id) {
 		return platoMenuService.buscarPlatoMenu(id);
 	}
 	
 	@PostMapping("/platoMenus")
-	public PlatoMenus guardarPlatoMenu(@RequestBody PlatoMenus platoMenu) {
+	public PlatoMenu guardarPlatoMenu(@RequestBody PlatoMenu platoMenu) {
 		return platoMenuService.guardarPlatoMenu(platoMenu);
 	}
 	
 	@PutMapping("/platoMenus/{id}")
-	public PlatoMenus actualizarOtro(@PathVariable(name = "id") Long id, @RequestBody PlatoMenus platoMenu) {
-		PlatoMenus platoMenuSeleccionado = platoMenuService.buscarPlatoMenu(id);
+	public PlatoMenu actualizarOtro(@PathVariable(name = "id") Long id, @RequestBody PlatoMenu platoMenu) {
+		PlatoMenu platoMenuSeleccionado = platoMenuService.buscarPlatoMenu(id);
 		
 		platoMenuSeleccionado.setPlato(platoMenu.getPlato());
 		platoMenuSeleccionado.setMenu(platoMenu.getMenu());

@@ -2,6 +2,7 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,57 +12,52 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-@Table(name = "menu")
+@Table(name = "menus")
 public class Menu {
 
 	// Atributos
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "imagen")
 	private String imagen;
-	
+
 	@Column(name = "precio_menu")
-	private double precio_menu;
-	
+	private double precioMenu;
+
 	@ManyToOne
-	@JoinColumn(name="carta")
+	@JoinColumn(name = "carta")
 	private CartasRestaurantes carta;
 
-	@OneToMany
-	@JoinColumn(name="PlatoMenu")
-	private List<PlatoMenus> plato_menu;
-
+	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+	private List<PlatoMenu> platoMenus;
 
 	// ----------------------CONSTRUCTORES---------------------------
-	
+
 	public Menu() {
-		
+
 	}
 
 	public Menu(Long id, String nombre, String imagen, Double precio_menu, CartasRestaurantes cartas_restaurantes) {
-		//super();
+		// super();
 		this.id = id;
 		this.nombre = nombre;
 		this.imagen = imagen;
-		this.precio_menu = precio_menu;
+		this.precioMenu = precio_menu;
 		this.carta = cartas_restaurantes;
 	}
-	
+
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -86,12 +82,12 @@ public class Menu {
 		this.imagen = imagen;
 	}
 
-	public double getPrecio_menu() {
-		return precio_menu;
+	public double getPrecioMenu() {
+		return precioMenu;
 	}
 
-	public void setPrecio_menu(double precio_menu) {
-		this.precio_menu = precio_menu;
+	public void setPrecioMenu(double precioMenu) {
+		this.precioMenu = precioMenu;
 	}
 
 	public CartasRestaurantes getCarta() {
@@ -103,22 +99,22 @@ public class Menu {
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "PlatoMenus")
-	public List<PlatoMenus> getPlato_menu() {
-		return plato_menu;
+	@OneToMany(fetch = FetchType.LAZY)
+	public List<PlatoMenu> getPlatoMenus() {
+		return platoMenus;
 	}
 
-	public void setPlato_menu(List<PlatoMenus> plato_menu) {
-		this.plato_menu = plato_menu;
+	public void setPlato_menu(List<PlatoMenu> platoMenus) {
+		this.platoMenus = platoMenus;
 	}
-	
+
 
 	// --------------------------------TOSTRING-------------------------------
-	
-	
+
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + "nombre=" + nombre + ", imagen=" + imagen + ", precio_menu=" + precio_menu + ", carta_restaurante=" + carta + "]";
+		return "Menu [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", precioMenu=" + precioMenu
+				+ ", carta=" + carta + ", platoMenus=" + platoMenus + "]";
 	}
-	
+
 }

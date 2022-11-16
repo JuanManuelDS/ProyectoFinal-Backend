@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "plato_menus")
-public class PlatoMenus {
+public class PlatoMenu {
 
 	// Atributos
 	@Id
@@ -27,11 +27,11 @@ public class PlatoMenus {
 
 	//------------------CONSTRUCTORES----------------------------
 	
-	public PlatoMenus() {
+	public PlatoMenu() {
 		
 	}
 
-	public PlatoMenus(Long id, Menu menu, Plato plato) {
+	public PlatoMenu(Long id, Menu menu, Plato plato) {
 		this.id = id;
 		this.menu = menu;
 		this.plato = plato;

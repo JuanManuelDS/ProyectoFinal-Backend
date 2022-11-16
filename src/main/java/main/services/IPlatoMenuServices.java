@@ -2,17 +2,17 @@ package main.services;
 
 import java.util.List;
 
-import main.dto.PlatoMenus;
+import main.dto.PlatoMenu;
 
 public interface IPlatoMenuServices {
 
-	public List<PlatoMenus> listarPlatoMenus();
+	public List<PlatoMenu> listarPlatoMenus();
 	
-	public PlatoMenus buscarPlatoMenu(Long id);
+	public PlatoMenu buscarPlatoMenu(Long id);
 	
-	public PlatoMenus guardarPlatoMenu(PlatoMenus platoMenu);
+	public PlatoMenu guardarPlatoMenu(PlatoMenu platoMenu);
 	
-	public PlatoMenus actualizarPlatoMenu(PlatoMenus platoMenu);
+	public PlatoMenu actualizarPlatoMenu(PlatoMenu platoMenu);
 	
 	public void eliminarPlatoMenu(Long id);
 	

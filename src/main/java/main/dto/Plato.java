@@ -2,6 +2,7 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,115 +21,110 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Plato {
 
 	// Atributos
-		@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
-		
-		@Column(name = "nombre")
-		private String nombre;
-		
-		@Column(name = "imagen")
-		private String imagen;
-		
-		@Column(name = "descripcion")
-		private String descripcion;
-		
-		@Column(name = "precio")
-		private int precio;
-		
-		@ManyToOne
-		@JoinColumn
-		private Seccion seccion;
-		
-		@OneToMany
-		@JoinColumn
-		private List<PlatoMenus> platoMenus;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-		// ----------------------CONSTRUCTORES---------------------------
-		
-		public Plato() {
-			
-		}
+	@Column(name = "nombre")
+	private String nombre;
 
-		public Plato(Long id, String nombre, String imagen, String descripcion, int precio, Seccion seccion) {
-			this.id = id;
-			this.nombre = nombre;
-			this.imagen = imagen;
-			this.descripcion = descripcion;
-			this.precio = precio;
-			this.seccion = seccion;
-		}
-		
-		// -----------------------GETTERS Y SETTERS-----------------------------
+	@Column(name = "imagen")
+	private String imagen;
 
-		public Long getId() {
-			return id;
-		}
+	@Column(name = "descripcion")
+	private String descripcion;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	@Column(name = "precio")
+	private int precio;
 
-		public String getNombre() {
-			return nombre;
-		}
+	@ManyToOne
+	@JoinColumn(name="seccion")
+	private Seccion seccion;
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
+	@OneToMany(mappedBy = "plato", cascade = CascadeType.ALL)
+	private List<PlatoMenu> platoMenus;
 
-		public String getImagen() {
-			return imagen;
-		}
+	// ----------------------CONSTRUCTORES---------------------------
 
-		public void setImagen(String imagen) {
-			this.imagen = imagen;
-		}
+	public Plato() {
 
-		public String getDescripcion() {
-			return descripcion;
-		}
+	}
 
-		public void setDescripcion(String descripcion) {
-			this.descripcion = descripcion;
-		}
+	public Plato(Long id, String nombre, String imagen, String descripcion, int precio, Seccion seccion) {
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.seccion = seccion;
+	}
 
-		public int getPrecio() {
-			return precio;
-		}
+	// -----------------------GETTERS Y SETTERS-----------------------------
 
-		public void setPrecio(int precio) {
-			this.precio = precio;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public Seccion getSeccion() {
-			return seccion;
-		}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		public void setSeccion(Seccion seccion) {
-			this.seccion = seccion;
-		}
-		
-		@JsonIgnore
-		@OneToMany(fetch = FetchType.LAZY, mappedBy = "PlatoMenus")
-		public List<PlatoMenus> getPlatoMenus() {
-			return platoMenus;
-		}
+	public String getNombre() {
+		return nombre;
+	}
 
-		public void setPlatoMenus(List<PlatoMenus> platoMenus) {
-			this.platoMenus = platoMenus;
-		}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-		// --------------------------------TOSTRING-------------------------------
+	public String getImagen() {
+		return imagen;
+	}
 
-		@Override
-		public String toString() {
-			return "Plato [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", descripcion=" + descripcion
-					+ ", precio=" + precio + ", seccion=" + seccion + "]";
-		}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
-		
-		
-		
-		
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public Seccion getSeccion() {
+		return seccion;
+	}
+
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY)
+	public List<PlatoMenu> getPlatoMenus() {
+		return platoMenus;
+	}
+
+	public void setPlatoMenus(List<PlatoMenu> platoMenus) {
+		this.platoMenus = platoMenus;
+	}
+
+	// --------------------------------TOSTRING-------------------------------
+
+	@Override
+	public String toString() {
+		return "Plato [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", seccion=" + seccion + "]";
+	}
+
 }

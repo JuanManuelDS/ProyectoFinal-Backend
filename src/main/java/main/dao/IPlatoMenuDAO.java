@@ -2,8 +2,8 @@ package main.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import main.dto.PlatoMenus;
+import main.dto.PlatoMenu;
 
-public interface IPlatoMenuDAO extends JpaRepository<PlatoMenus, Long>{
+public interface IPlatoMenuDAO extends JpaRepository<PlatoMenu, Long>{
 
 }

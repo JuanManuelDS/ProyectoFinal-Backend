@@ -2,17 +2,19 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "secciones")
@@ -20,76 +22,82 @@ public class Seccion {
 
 	// Atributos
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "imagen")
 	private String imagen;
-	
-	@OneToOne
-	@JoinColumn(name="nombre_archivo")
-	private CartasRestaurantes cartas_restaurantes;
 
-	@OneToMany
-	@JoinColumn(name="platos")
+	@ManyToOne
+	@JoinColumn(name = "carta")
+	private CartasRestaurantes cartaRestaurante;
+
+	@OneToMany(mappedBy = "seccion", cascade = CascadeType.ALL)
 	private List<Plato> platos;
-	
+
 	// ----------------------CONSTRUCTORES---------------------------
+
+	public Seccion() {
+
+	}
+
+	public Seccion(Long id, String nombre, String imagen, CartasRestaurantes cartaRestaurante, List<Plato> platos) {
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.cartaRestaurante = cartaRestaurante;
+		this.platos = platos;
+	}
+
+	// -----------------------GETTERS Y SETTERS-----------------------------
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public CartasRestaurantes getCartaRestaurante() {
+		return cartaRestaurante;
+	}
+
+	public void setCartaRestaurante(CartasRestaurantes cartaRestaurante) {
+		this.cartaRestaurante = cartaRestaurante;
+	}
 	
-		public Seccion() {
-			
-		}
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY)
+	public List<Plato> getPlatos() {
+		return platos;
+	}
 
-		public Seccion(Long id, String nombre, String imagen, CartasRestaurantes cartas_restaurantes) {
-			//super();
-			this.id = id;
-			this.nombre = nombre;
-			this.imagen = imagen;
-			this.cartas_restaurantes = cartas_restaurantes;
-		}
-		
-		// -----------------------GETTERS Y SETTERS-----------------------------
+	public void setPlatos(List<Plato> platos) {
+		this.platos = platos;
+	}
 
-		public Long getId() {
-			return id;
-		}
+	// --------------------------------TOSTRING-------------------------------
 
-		public void setId(Long id) {
-			this.id = id;
-		}
-		
-		public String getNombre() {
-			return nombre;
-		}
+	@Override
+	public String toString() {
+		return "Seccion [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", cartaRestaurante="
+				+ cartaRestaurante + ", platos=" + platos + "]";
+	}
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public String getImagen() {
-			return imagen;
-		}
-
-		public void setImagen(String imagen) {
-			this.imagen = imagen;
-		}
-	
-		public CartasRestaurantes getCartas() {
-			return cartas_restaurantes;
-		}
-
-		public void setCartas(CartasRestaurantes cartas_restaurantes) {
-			this.cartas_restaurantes = cartas_restaurantes;
-		}
-		
-		// --------------------------------TOSTRING-------------------------------
-		
-		@Override
-		public String toString() {
-			return "Menu [id=" + id + "nombre=" + nombre + ", imagen=" + imagen + ", cartas_restaurantes=" + cartas_restaurantes + "]";
-		}
-		
 }
