@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="cartas_restaurantes")
-public class CartasRestaurantes {
+public class CartaRestaurante {
 
 	// Atributos
 	@Id
@@ -41,11 +41,11 @@ public class CartasRestaurantes {
 
 	// ----------------------CONSTRUCTORES---------------------------
 	
-	public CartasRestaurantes() {
+	public CartaRestaurante() {
 		
 	}
 
-	public CartasRestaurantes(Long id, String nombre_restaurante, Long plantilla, List<Menu> menus,
+	public CartaRestaurante(Long id, String nombre_restaurante, Long plantilla, List<Menu> menus,
 			List<Seccion> secciones) {
 		this.id = id;
 		this.nombre_restaurante = nombre_restaurante;

@@ -37,7 +37,7 @@ public class Plantilla {
 	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "plantilla", cascade = CascadeType.ALL)
-	private List<CartasRestaurantes> cartasRestaurantes;
+	private List<CartaRestaurante> cartasRestaurantes;
 	
 	@OneToMany(mappedBy = "plantilla", cascade = CascadeType.ALL)
 	private List<Curriculum> curriculums;
@@ -87,11 +87,11 @@ public class Plantilla {
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
-	public List<CartasRestaurantes> getCartasRestaurantes() {
+	public List<CartaRestaurante> getCartasRestaurantes() {
 		return cartasRestaurantes;
 	}
 
-	public void setCartasRestaurantes(List<CartasRestaurantes> cartasRestaurantes) {
+	public void setCartasRestaurantes(List<CartaRestaurante> cartasRestaurantes) {
 		this.cartasRestaurantes = cartasRestaurantes;
 	}
 

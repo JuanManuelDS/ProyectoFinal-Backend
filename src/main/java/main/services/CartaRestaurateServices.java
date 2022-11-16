@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.ICartaRestauranteDAO;
-import main.dto.CartasRestaurantes;
+import main.dto.CartaRestaurante;
 
 @Service
 public class CartaRestaurateServices implements ICartaRestauranteService {
@@ -15,24 +15,24 @@ public class CartaRestaurateServices implements ICartaRestauranteService {
 	ICartaRestauranteDAO iCartaRestauranteDAO;
 
 	@Override
-	public List<CartasRestaurantes> listarCartasRestaurantes() {
+	public List<CartaRestaurante> listarCartasRestaurantes() {
 		
 		return iCartaRestauranteDAO.findAll();
 	}
 
 	@Override
-	public CartasRestaurantes buscarCartaRestaurante(Long id) {
+	public CartaRestaurante buscarCartaRestaurante(Long id) {
 		
 		return iCartaRestauranteDAO.findById(id).get();
 	}
 
 	@Override
-	public CartasRestaurantes guardarCartaRestaurante(CartasRestaurantes cartaRestaurante) {
+	public CartaRestaurante guardarCartaRestaurante(CartaRestaurante cartaRestaurante) {
 		return iCartaRestauranteDAO.save(cartaRestaurante);
 	}
 
 	@Override
-	public CartasRestaurantes actualizarCartaRestaurante(CartasRestaurantes cartaRestaurante) {
+	public CartaRestaurante actualizarCartaRestaurante(CartaRestaurante cartaRestaurante) {
 		
 		return iCartaRestauranteDAO.save(cartaRestaurante);
 	}

@@ -36,7 +36,7 @@ public class Menu {
 
 	@ManyToOne
 	@JoinColumn(name = "carta")
-	private CartasRestaurantes carta;
+	private CartaRestaurante carta;
 
 	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
 	private List<PlatoMenu> platoMenus;
@@ -47,7 +47,7 @@ public class Menu {
 
 	}
 
-	public Menu(Long id, String nombre, String imagen, Double precio_menu, CartasRestaurantes cartas_restaurantes) {
+	public Menu(Long id, String nombre, String imagen, Double precio_menu, CartaRestaurante cartas_restaurantes) {
 		// super();
 		this.id = id;
 		this.nombre = nombre;
@@ -90,11 +90,11 @@ public class Menu {
 		this.precioMenu = precioMenu;
 	}
 
-	public CartasRestaurantes getCarta() {
+	public CartaRestaurante getCarta() {
 		return carta;
 	}
 
-	public void setCarta(CartasRestaurantes carta) {
+	public void setCarta(CartaRestaurante carta) {
 		this.carta = carta;
 	}
 
