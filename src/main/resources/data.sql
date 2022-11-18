@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS shrimpdf;
+
 
 CREATE DATABASE shrimpdf;
 USE shrimpdf;
