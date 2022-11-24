@@ -7,5 +7,5 @@ spring.datasource.password= ${PROD_DB_PASSWORD}
 #    username: ${PROD_DB_USERNAME}
 #    password: ${PROD_DB_PASSWORD}
 #    name: ProyectoFinal-Backend
-#server:
-#  port: ${PORT}
+server:
+  port: ${PORT}
