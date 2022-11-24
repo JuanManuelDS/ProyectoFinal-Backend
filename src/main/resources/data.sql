@@ -7,26 +7,40 @@ DROP TABLE IF EXISTS usuarios;
 
 CREATE TABLE usuarios (
 id int auto_increment,
-email VARCHAR(100),
-nombre_usuario VARCHAR(100),
+email VARCHAR(100) UNIQUE,
+nombre_usuario VARCHAR(100) UNIQUE,
 contrasena VARCHAR(100),
 PRIMARY KEY (id));
+
+CREATE TABLE rol (
+id int auto_increment primary key, 
+name varchar(20));
+
+insert into rol(name) values ('ADMIN'),( 'USER');
+
+CREATE TABLE usuario_rol (
+id int auto_increment primary key,
+usuario int references usuario(id) on delete cascade on update cascade,
+rol int references rol(id) on delete cascade on update cascade);
 
 DROP TABLE IF EXISTS plantillas;
 
 CREATE TABLE plantillas (
-id int auto_increment,
+id INT AUTO_INCREMENT,
 nombre_archivo VARCHAR(100),
-firma VARCHAR(500),
-usuario int REFERENCES usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE,
+firma VARCHAR(250),
+usuario INT REFERENCES usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
+
+/*---------------------------CURRICULUMS---------------------------------*/
 
 DROP TABLE IF EXISTS curriculums;
 
 CREATE TABLE curriculums (
-id int REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
+id INT AUTO_INCREMENT, 
 texto_presentacion TEXT,
 imagen VARCHAR(250),
+plantilla INT REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS otros;
@@ -34,7 +48,7 @@ DROP TABLE IF EXISTS otros;
 CREATE TABLE otros (
 id INT AUTO_INCREMENT,
 descripcion TEXT,
-curriculum int REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
+curriculum INT REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS datos;
@@ -44,7 +58,7 @@ id INT AUTO_INCREMENT,
 nombre VARCHAR(100),
 apellidos VARCHAR(100),
 edad TINYINT,
-email VARCHAR(155),
+email VARCHAR(100),
 telefono VARCHAR(25),
 codigo_postal VARCHAR (10),
 ciudad VARCHAR (100),
@@ -59,7 +73,7 @@ puesto VARCHAR(120),
 descripcion TEXT,
 fecha_inicio DATE,
 fecha_fin DATE,
-curriculum int REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
+curriculum INT REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS estudios;
@@ -70,7 +84,7 @@ titulo VARCHAR(120),
 descripcion TEXT,
 fecha_inicio DATE,
 fecha_fin DATE,
-curriculum int REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
+curriculum INT REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS idiomas;
@@ -80,13 +94,16 @@ id INT AUTO_INCREMENT,
 idioma VARCHAR(100),
 nivel_escrito VARCHAR(40),
 nivel_oral VARCHAR(40),
-curriculum int REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
+curriculum INT REFERENCES curriculums(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
+
+/*---------------------------LISTADOS---------------------------------*/
 
 DROP TABLE IF EXISTS listado;
 
 CREATE TABLE listado (
-id int REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
+id INT AUTO_INCREMENT,
+plantilla INT REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
 titulo_lista VARCHAR(100),
 PRIMARY KEY (id));
 
@@ -99,10 +116,13 @@ unidades MEDIUMINT,
 listado int REFERENCES listado(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
+/*---------------------------CARTAS RESTAURANTES---------------------------------*/
+
 DROP TABLE IF EXISTS cartas_restaurantes;
 
 CREATE TABLE cartas_restaurantes (
-id int REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
+id INT AUTO_INCREMENT,
+plantilla INT REFERENCES plantillas(id) ON DELETE CASCADE ON UPDATE CASCADE,
 nombre_restaurante VARCHAR(100),
 PRIMARY KEY (id));
 
@@ -112,7 +132,7 @@ CREATE TABLE secciones (
 id INT AUTO_INCREMENT,
 nombre VARCHAR(100),
 imagen VARCHAR(255),
-carta int REFERENCES cartas_restaurantes(id) ON DELETE CASCADE ON UPDATE CASCADE,
+carta INT REFERENCES cartas_restaurantes(id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS platos;
