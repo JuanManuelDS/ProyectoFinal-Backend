@@ -2,6 +2,7 @@ package main.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,6 +33,9 @@ public class Usuario {
 	@Column(name = "contrasena")
 	private String contrasena;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
+	private List<UsuarioRol> roles;
+	
 	@OneToMany
 	@JoinColumn(name = "email")
 	private List<Plantilla> plantillas;
@@ -42,13 +46,13 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(Long id, String email, String nombreUsuario, String contrasena, List<Plantilla> plantillas) {
-		//super();
+	public Usuario(Long id, String email, String nombreUsuario, String contrasena, List<Plantilla> plantillas,  List<UsuarioRol> roles) {
 		this.id = id;
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.plantillas = plantillas;
+		this.roles = roles;
 	}
 
 	//----------------GETTERS Y SETTERS------------------------------
@@ -95,12 +99,20 @@ public class Usuario {
 		this.plantillas = plantillas;
 	}
 	
+	@JsonIgnore
+	public List<UsuarioRol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<UsuarioRol> roles) {
+		this.roles = roles;
+	}
+	
 	//------------------------TOSTRING-----------------------------
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", nombre usuario=" + nombreUsuario + ", contrasena="
-				+ contrasena + ", plantillas=" + plantillas + "]";
+		return "Usuario [id=" + id + ", email=" + email + ", nombre usuario=" + nombreUsuario + "]";
 	}
 
 }
