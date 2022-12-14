@@ -32,30 +32,32 @@ public class Plantilla {
 	@Column
 	private String firma;
 	
+	@Column
+	private String tipo;
+	
+	@Column 
+	private String datos;
+	
 	@ManyToOne
 	@JoinColumn(name = "usuario")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "plantilla", cascade = CascadeType.ALL)
-	private List<CartaRestaurante> cartasRestaurantes;
 	
-	@OneToMany(mappedBy = "plantilla", cascade = CascadeType.ALL)
-	private List<Curriculum> curriculums;
-	
-	@OneToMany(mappedBy = "plantilla", cascade = CascadeType.ALL)
-	private List<Listado> listados;
 	
 	// ----------------------CONSTRUCTORES---------------------------
 	
 	public Plantilla() {
 		
 	}
+
 	
-	public Plantilla(Long id, String nombre_archivo, String firma, Usuario usuario) {
+	public Plantilla(Long id, String nombreArchivo, String firma, String tipo, String data, Usuario usuario) {
 		//super();
 		this.id = id;
-		this.nombreArchivo = nombre_archivo;
+		this.nombreArchivo = nombreArchivo;
 		this.firma = firma;
+		this.tipo = tipo;
+		this.datos = data;
 		this.usuario = usuario;
 	}
 
@@ -84,43 +86,38 @@ public class Plantilla {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY)
-	public List<CartaRestaurante> getCartasRestaurantes() {
-		return cartasRestaurantes;
-	}
-
-	public void setCartasRestaurantes(List<CartaRestaurante> cartasRestaurantes) {
-		this.cartasRestaurantes = cartasRestaurantes;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY)
-	public List<Curriculum> getCurriculums() {
-		return curriculums;
-	}
-
-	public void setCurriculums(List<Curriculum> curriculums) {
-		this.curriculums = curriculums;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY)
-	public List<Listado> getListados() {
-		return listados;
-	}
-
-	public void setListados(List<Listado> listados) {
-		this.listados = listados;
-	}
 
 	public Long getId() {
 		return id;
 	}
 	
-	// --------------------------------TOSTRING-------------------------------
+	
+	public String getTipo() {
+		return tipo;
+	}
 
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+	public String getData() {
+		return datos;
+	}
+
+
+	public void setData(String data) {
+		this.datos = data;
+	}
+
+
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+
+	// --------------------------------TOSTRING-------------------------------
 	@Override
 	public String toString() {
 		return "Plantilla [id=" + id + ", nombre_archivo=" + nombreArchivo + ", firma=" + firma + ", usuario="
