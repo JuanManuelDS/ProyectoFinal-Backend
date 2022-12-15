@@ -93,9 +93,8 @@ public class UsuarioController {
 	}
 	
 	//Agrega un rol a un usuario
-		@PostMapping("/usuarios/roles")
-		public UsuarioRol agregarRolUsuario(@RequestBody RolAUsuarioForm form) {
-			System.out.println(form.getUsername());
+	@PostMapping("/usuarios/roles")
+	public UsuarioRol agregarRolUsuario(@RequestBody RolAUsuarioForm form) {
 			Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(form.getUsername());
 			Rol rol = rolService.buscarRol(form.getRoleName());
 			UsuarioRol usuarioRol = new UsuarioRol(null,usuario, rol);
@@ -104,8 +103,16 @@ public class UsuarioController {
 	
 	@PostMapping("/usuarios")
 	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
+		
 		usuario.setContrasena(bCryptPasswordEncoder.encode(usuario.getContrasena()));
-		return usuarioService.guardarUsuario(usuario);
+		Usuario nuevoUsuario =  usuarioService.guardarUsuario(usuario);
+		
+		//Le agrego el rol de user a todos los usuarios que se logueen
+		Usuario usuarioAux = usuarioService.buscarUsuarioPorNombreUsuario(nuevoUsuario.getNombreUsuario());
+		Rol rol = rolService.buscarRol("USER");
+		UsuarioRol usuarioRol = new UsuarioRol(null,usuario, rol);
+		
+		return nuevoUsuario;
 	}
 	
 	@PutMapping("/usuarios/{id}")
