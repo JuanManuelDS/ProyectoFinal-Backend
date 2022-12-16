@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import main.dao.IPlantillaDAO;
 import main.dto.Plantilla;
+import main.dto.Usuario;
 
 @Service
 public class PlantillaService implements IPlantillaServices {
@@ -42,6 +43,12 @@ public class PlantillaService implements IPlantillaServices {
 	public void eliminarPlantilla(Long id) {
 		// TODO Auto-generated method stub
 		iPlantillaDAO.deleteById(id);
+	}
+
+	@Override
+	public List<Plantilla> plantillasUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return iPlantillaDAO.findByUsuario(usuario);
 	}
 
 }

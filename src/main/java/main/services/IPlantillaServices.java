@@ -3,6 +3,7 @@ package main.services;
 import java.util.List;
 
 import main.dto.Plantilla;
+import main.dto.Usuario;
 
 public interface IPlantillaServices {
 
@@ -16,4 +17,5 @@ public interface IPlantillaServices {
 	
 	public void eliminarPlantilla(Long id);
 	
+	public List<Plantilla> plantillasUsuario(Usuario usuario);
 }

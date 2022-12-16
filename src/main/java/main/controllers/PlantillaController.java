@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.Plantilla;
+import main.dto.Usuario;
 import main.services.PlantillaService;
+import main.services.UsuarioService;
 
 @RestController
 @RequestMapping("/api")
@@ -22,9 +24,18 @@ public class PlantillaController {
 	@Autowired
 	PlantillaService plantillaService;
 	
+	@Autowired
+	UsuarioService usuarioService;
+	
 	@GetMapping("/plantillas")
 	public List<Plantilla> listarPlantillas(){
 		return plantillaService.listarPlantillas();
+	}
+	
+	@GetMapping("/plantillas/{username}")
+	public List<Plantilla> plantillasUsuario(@PathVariable(name="username") String username){
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
+		return plantillaService.plantillasUsuario(usuario);
 	}
 	
 	@GetMapping("/plantillas/{id}")
