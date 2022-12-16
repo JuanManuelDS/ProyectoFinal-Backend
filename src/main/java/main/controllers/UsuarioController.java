@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.Rol;
@@ -145,19 +144,19 @@ public class UsuarioController {
 	}
 	
 	/*---------- VALIDACIONES DE EMAIL Y USUARIO --------------------*/
-	@GetMapping("validacion/email_tomado")
-	public boolean isEmailTomado(@RequestParam String email) {
+	@PostMapping("validacion/email_tomado/{email}")
+	public boolean isEmailTomado(@RequestBody EmailUsuario email) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email.getEmailUsuario());
 		if(usuario != null) {
 			return true;
 		} else return false;
 	}
 	
-	@GetMapping("validacion/username_tomado")
-	public boolean isUsernameTomado(@RequestParam String nombreUsuario) {
+	@PostMapping("validacion/username_tomado/{username}")
+	public boolean isUsernameTomado(@RequestBody NombreUsuario nombreUsuario) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario.getNombreUsuario());
 		if(usuario != null) {
 			return true;
 		} else return false;

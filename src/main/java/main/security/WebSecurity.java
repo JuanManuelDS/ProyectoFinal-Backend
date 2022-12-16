@@ -45,9 +45,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		
 		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, REGISTER_URL).permitAll();//La página register tampoco
 		
-		httpSecurity.authorizeRequests().antMatchers(HttpMethod.GET, EMAIL_VALIDATION_URL).permitAll();
+		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, EMAIL_VALIDATION_URL).permitAll();
 		
-		httpSecurity.authorizeRequests().antMatchers(HttpMethod.GET, USERNAME_VALIDATION_URL).permitAll();
+		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, USERNAME_VALIDATION_URL).permitAll();
 		
 		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, ROLE_TO_USER_URL).hasRole("ADMIN"); //Tampoco para agregar roles a usuarios
 		
