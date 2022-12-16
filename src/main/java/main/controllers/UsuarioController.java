@@ -153,7 +153,7 @@ public class UsuarioController {
 		} else return false;
 	}
 	
-	@PostMapping("/validacion/username_tomado/{username}")
+	@GetMapping("/validacion/username_tomado/{username}")
 	public boolean isUsernameTomado(@PathVariable(name="username") String nombreUsuario) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
