@@ -68,8 +68,8 @@ public class UsuarioController {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
 		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
 		if(usuario != null) {
-			return false;
-		} else return true;
+			return true;
+		} else return false;
 	}
 	
 	@GetMapping("usuarios/username_tomado/{username}")
@@ -77,8 +77,8 @@ public class UsuarioController {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 		if(usuario != null) {
-			return false;
-		} else return true;
+			return true;
+		} else return false;
 	}
 	
 	@GetMapping("/usuarios/buscar/id/{id}")
