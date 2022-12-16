@@ -63,23 +63,7 @@ public class UsuarioController {
 		return usuarioService.listarUsuarios();
 	}
 	
-	@GetMapping("usuarios/email_tomado/{email}")
-	public boolean isEmailTomado(@PathVariable(name="email")String email) {
-		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
-		if(usuario != null) {
-			return true;
-		} else return false;
-	}
 	
-	@GetMapping("usuarios/username_tomado/{username}")
-	public boolean isUsernameTomado(@PathVariable(name="username")String nombreUsuario) {
-		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
-		if(usuario != null) {
-			return true;
-		} else return false;
-	}
 	
 	@GetMapping("/usuarios/buscar/id/{id}")
 	public Usuario buscarUsuario(@PathVariable(name = "id") Long id) {
@@ -121,7 +105,7 @@ public class UsuarioController {
 	}
 	
 	//Agrega un rol a un usuario
-	@PostMapping("/usuarios/roles")
+	@PostMapping("/roles/usuarios")
 	public UsuarioRol agregarRolUsuario(@RequestBody RolAUsuarioForm form) {
 			Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(form.getUsername());
 			Rol rol = rolService.buscarRol(form.getRoleName());
@@ -129,7 +113,7 @@ public class UsuarioController {
 			return usuarioRolService.guardaUsuarioRol(usuarioRol);
 		}
 	
-	@PostMapping("/usuarios")
+	@PostMapping("/register")
 	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
 		
 		usuario.setContrasena(bCryptPasswordEncoder.encode(usuario.getContrasena()));
@@ -157,6 +141,25 @@ public class UsuarioController {
 	@DeleteMapping("/usuarios/{id}")
 	public void eliminarUsuario(@PathVariable(name = "id") Long id) {
 		usuarioService.eliminarUsuario(id);
+	}
+	
+	/*---------- VALIDACIONES DE EMAIL Y USUARIO --------------------*/
+	@GetMapping("validacion/email_tomado/{email}")
+	public boolean isEmailTomado(@PathVariable(name="email")String email) {
+		//Si ya existe un usuario con este email retorna true, en caso contrario false
+		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		if(usuario != null) {
+			return true;
+		} else return false;
+	}
+	
+	@GetMapping("validacion/username_tomado/{username}")
+	public boolean isUsernameTomado(@PathVariable(name="username")String nombreUsuario) {
+		//Si ya existe un usuario con este email retorna true, en caso contrario false
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		if(usuario != null) {
+			return true;
+		} else return false;
 	}
 }
 

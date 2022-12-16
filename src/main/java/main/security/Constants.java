@@ -5,8 +5,10 @@ public class Constants {
 	// Spring Security
 
 	public static final String LOGIN_URL = "/login";
-	public static final String REGISTER_URL = "/api/usuarios";
-	public static final String ROLE_TO_USER_URL = "/api/usuarios/roles";
+	public static final String REGISTER_URL = "/api/register";
+	public static final String EMAIL_VALIDATION_URL = "api/validacion/email_tomado/";
+	public static final String USERNAME_VALIDATION_URL = "api/validacion/username_tomado/";
+	public static final String ROLE_TO_USER_URL = "/api/roles/usuarios";
 	public static final String HEADER_AUTHORIZACION_KEY = "Authorization";
 	public static final String TOKEN_BEARER_PREFIX = "Bearer ";
 

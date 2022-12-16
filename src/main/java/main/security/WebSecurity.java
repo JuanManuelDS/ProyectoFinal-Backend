@@ -3,6 +3,8 @@ package main.security;
 import static main.security.Constants.LOGIN_URL;
 import static main.security.Constants.REGISTER_URL;
 import static main.security.Constants.ROLE_TO_USER_URL;
+import static main.security.Constants.USERNAME_VALIDATION_URL;
+import static main.security.Constants.EMAIL_VALIDATION_URL;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +45,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		
 		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, REGISTER_URL).permitAll();//La página register tampoco
 		
-		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, ROLE_TO_USER_URL).permitAll(); //Tampoco para agregar roles a usuarios
+		httpSecurity.authorizeRequests().antMatchers(HttpMethod.GET, EMAIL_VALIDATION_URL).permitAll();
+		
+		httpSecurity.authorizeRequests().antMatchers(HttpMethod.GET, USERNAME_VALIDATION_URL).permitAll();
+		
+		httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, ROLE_TO_USER_URL).hasRole("ADMIN"); //Tampoco para agregar roles a usuarios
 		
 		//Le digo que solo los que tengan rol de admin podrán ver todos los usuarios
 		httpSecurity.authorizeRequests().antMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN") 	
