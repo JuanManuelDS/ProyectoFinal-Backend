@@ -42,7 +42,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			.csrf().disable() //Se desactiva el filtro CSRF
 			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
 			.antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()// Se indica que el /login no requiere autenticación
-			.antMatchers(HttpMethod.POST, VALIDATION_URL).permitAll()
+			.antMatchers(HttpMethod.GET, VALIDATION_URL).permitAll()
 			.antMatchers(HttpMethod.POST, ROLE_TO_USER_URL).hasRole("ADMIN")
 			.antMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN") 	
 			.anyRequest().authenticated().and() //Se indica que el resto de URLs sí requieran autentificación
