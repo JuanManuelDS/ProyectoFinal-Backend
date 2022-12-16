@@ -147,7 +147,9 @@ public class UsuarioController {
 	@GetMapping("/validacion/email_tomado/{email}")
 	public boolean isEmailTomado(@PathVariable(name="email") String email) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
+		System.out.println(email);
 		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		System.out.println(usuario);
 		if(usuario != null) {
 			return true;
 		} else return false;
