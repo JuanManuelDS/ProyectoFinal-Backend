@@ -139,7 +139,7 @@ public class UsuarioController {
 	/*---------- VALIDACIONES DE EMAIL, USUARIO Y TOKEN --------------------*/
 	
 	/*Uso este método para validar el token desde el front y retornar la información del usuario (nombre de usuario y roles)*/
-	@GetMapping("/validacion/token")
+	@GetMapping("/token/validar")
 	public UsuarioInfo getUsuario() {
 		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		String credenciales = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
