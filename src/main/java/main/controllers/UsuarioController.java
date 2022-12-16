@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,6 +78,15 @@ public class UsuarioController {
 		return usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 	}
 	
+	/*Uso este método para validar el token desde el front y retornar la información del usuario (nombre de usuario y roles)*/
+	@GetMapping("/usuarios/verificar")
+	public UsuarioInfo getUsuario() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		String credenciales = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+		
+		return new UsuarioInfo(username, credenciales);
+	}
+	
 	//Retorna la lista de roles de un usuario
 	@GetMapping("/usuarios/roles/{nombreUsuario}")
 	public List<Rol> listarRolesUsuario(@PathVariable(name = "nombreUsuario") String nombreUsuario) {
@@ -129,6 +139,25 @@ public class UsuarioController {
 	@DeleteMapping("/usuarios/{id}")
 	public void eliminarUsuario(@PathVariable(name = "id") Long id) {
 		usuarioService.eliminarUsuario(id);
+	}
+}
+
+//Uso esta clase para retornar la información del usuario cuando valido el token desde el front
+class UsuarioInfo {
+	private String nombreUsuario;
+	private String roles;
+	
+	public UsuarioInfo(String username, String roles) {
+		this.nombreUsuario = username;
+		this.roles = roles;
+	}
+	
+	public String getUsername() {
+		return nombreUsuario;
+	}
+	
+	public String getRoles() {
+		return roles;
 	}
 }
 
