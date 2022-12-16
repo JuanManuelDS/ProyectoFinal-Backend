@@ -145,21 +145,45 @@ public class UsuarioController {
 	
 	/*---------- VALIDACIONES DE EMAIL Y USUARIO --------------------*/
 	@GetMapping("validacion/email_tomado/{email}")
-	public boolean isEmailTomado(@PathVariable(name="email")String email) {
+	public boolean isEmailTomado(@RequestBody EmailUsuario email) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email.getEmailUsuario());
 		if(usuario != null) {
 			return true;
 		} else return false;
 	}
 	
 	@GetMapping("validacion/username_tomado/{username}")
-	public boolean isUsernameTomado(@PathVariable(name="username")String nombreUsuario) {
+	public boolean isUsernameTomado(@RequestBody NombreUsuario nombreUsuario) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
-		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario.getNombreUsuario());
 		if(usuario != null) {
 			return true;
 		} else return false;
+	}
+}
+
+class NombreUsuario {
+	private String nombreUsuario;
+
+	public NombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+}
+
+class EmailUsuario {
+	private String email;
+	
+	public EmailUsuario(String email) {
+		this.email = email;
+	}
+	
+	public String getEmailUsuario() {
+		return email;
 	}
 }
 
