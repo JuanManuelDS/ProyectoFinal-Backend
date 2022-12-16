@@ -110,7 +110,6 @@ public class UsuarioController {
 	@PostMapping("/register")
 	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
 		
-		Usuario usuarioAux = usuarioService.buscarUsuarioPorNombreUsuario(usuario.getNombreUsuario());
 		Rol rol = rolService.buscarRol("USER");
 		UsuarioRol usuarioRol = new UsuarioRol(null,usuario, rol);
 		usuario.setRoles(Arrays.asList(usuarioRol));
