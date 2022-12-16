@@ -80,14 +80,7 @@ public class UsuarioController {
 		return usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 	}
 	
-	/*Uso este método para validar el token desde el front y retornar la información del usuario (nombre de usuario y roles)*/
-	@GetMapping("/usuarios/verificar")
-	public UsuarioInfo getUsuario() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-		String credenciales = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-		
-		return new UsuarioInfo(username, credenciales);
-	}
+	
 	
 	//Retorna la lista de roles de un usuario
 	@GetMapping("/usuarios/roles/{nombreUsuario}")
@@ -143,7 +136,17 @@ public class UsuarioController {
 		usuarioService.eliminarUsuario(id);
 	}
 	
-	/*---------- VALIDACIONES DE EMAIL Y USUARIO --------------------*/
+	/*---------- VALIDACIONES DE EMAIL, USUARIO Y TOKEN --------------------*/
+	
+	/*Uso este método para validar el token desde el front y retornar la información del usuario (nombre de usuario y roles)*/
+	@GetMapping("/validacion/token")
+	public UsuarioInfo getUsuario() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		String credenciales = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+		
+		return new UsuarioInfo(username, credenciales);
+	}
+	
 	@GetMapping("/validacion/email_tomado/{email}")
 	public boolean isEmailTomado(@PathVariable(name="email") String email) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
