@@ -1,6 +1,7 @@
 package main.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,13 +110,16 @@ public class UsuarioController {
 	@PostMapping("/register")
 	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
 		
+		Usuario usuarioAux = usuarioService.buscarUsuarioPorNombreUsuario(usuario.getNombreUsuario());
+		Rol rol = rolService.buscarRol("USER");
+		UsuarioRol usuarioRol = new UsuarioRol(null,usuario, rol);
+		usuario.setRoles(Arrays.asList(usuarioRol));
+		
 		usuario.setContrasena(bCryptPasswordEncoder.encode(usuario.getContrasena()));
 		Usuario nuevoUsuario =  usuarioService.guardarUsuario(usuario);
 		
 		//Le agrego el rol de user a todos los usuarios que se logueen
-		Usuario usuarioAux = usuarioService.buscarUsuarioPorNombreUsuario(nuevoUsuario.getNombreUsuario());
-		Rol rol = rolService.buscarRol("USER");
-		UsuarioRol usuarioRol = new UsuarioRol(null,usuario, rol);
+		
 		
 		return nuevoUsuario;
 	}
