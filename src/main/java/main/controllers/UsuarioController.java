@@ -144,7 +144,7 @@ public class UsuarioController {
 	}
 	
 	/*---------- VALIDACIONES DE EMAIL Y USUARIO --------------------*/
-	@PostMapping("validacion/email_tomado")
+	@PostMapping("/validacion/email_tomado")
 	public boolean isEmailTomado(@RequestBody EmailUsuario email) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
 		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email.getEmailUsuario());
@@ -153,7 +153,7 @@ public class UsuarioController {
 		} else return false;
 	}
 	
-	@PostMapping("validacion/username_tomado")
+	@PostMapping("/validacion/username_tomado")
 	public boolean isUsernameTomado(@RequestBody NombreUsuario nombreUsuario) {
 		//Si ya existe un usuario con este email retorna true, en caso contrario false
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario.getNombreUsuario());
