@@ -63,6 +63,24 @@ public class UsuarioController {
 		return usuarioService.listarUsuarios();
 	}
 	
+	@GetMapping("usuarios/email_tomado/{email}")
+	public boolean isEmailTomado(@PathVariable(name="email")String email) {
+		//Si ya existe un usuario con este email retorna true, en caso contrario false
+		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		if(usuario != null) {
+			return false;
+		} else return true;
+	}
+	
+	@GetMapping("usuarios/username_tomado/{username}")
+	public boolean isUsernameTomado(@PathVariable(name="username")String nombreUsuario) {
+		//Si ya existe un usuario con este email retorna true, en caso contrario false
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		if(usuario != null) {
+			return false;
+		} else return true;
+	}
+	
 	@GetMapping("/usuarios/buscar/id/{id}")
 	public Usuario buscarUsuario(@PathVariable(name = "id") Long id) {
 		return usuarioService.buscarUsuario(id);
