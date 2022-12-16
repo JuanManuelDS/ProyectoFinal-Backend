@@ -123,20 +123,27 @@ public class UsuarioController {
 		return nuevoUsuario;
 	}
 	
-	@PutMapping("/usuarios/{id}")
-	public Usuario actualizarUsuario(@PathVariable(name = "id") Long id, @RequestBody Usuario usuario) {
-		Usuario usuarioSeleccionado = usuarioService.buscarUsuario(id);
+	@PutMapping("/usuarios/{username}")
+	public Usuario actualizarUsuario(@PathVariable(name = "username") String username, @RequestBody Usuario usuario) {
+		Usuario usuarioSeleccionado = usuarioService.buscarUsuarioPorNombreUsuario(username);
 		
-		usuarioSeleccionado.setNombreUsuario(usuario.getNombreUsuario());
-		usuarioSeleccionado.setEmail(usuario.getEmail());
-		usuarioSeleccionado.setContrasena(usuario.getContrasena());
+		if(usuario.getNombreUsuario().length()>0) {
+			usuarioSeleccionado.setNombreUsuario(usuario.getNombreUsuario());
+		}
+		if(usuario.getEmail().length()>0) {
+			usuarioSeleccionado.setEmail(usuario.getEmail());
+		}
+		if(usuario.getContrasena().length()>0) {
+			usuarioSeleccionado.setContrasena(usuario.getContrasena());
+		}
 		
 		return usuarioService.actualizarUsuario(usuarioSeleccionado);
 	}
 	
-	@DeleteMapping("/usuarios/{id}")
-	public void eliminarUsuario(@PathVariable(name = "id") Long id) {
-		usuarioService.eliminarUsuario(id);
+	@DeleteMapping("/usuarios/{username}")
+	public void eliminarUsuario(@PathVariable(name = "username") String username) {
+		Usuario user = usuarioService.buscarUsuarioPorNombreUsuario(username);
+		usuarioService.eliminarUsuario(user.getId());
 	}
 	
 	/*---------- VALIDACIONES DE EMAIL, USUARIO Y TOKEN --------------------*/
