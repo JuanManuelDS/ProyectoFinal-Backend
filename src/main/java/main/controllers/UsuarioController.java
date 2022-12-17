@@ -90,13 +90,9 @@ public class UsuarioController {
 	public UsuarioCompleto buscarUsuarioNombre(@PathVariable(name="nombreUsuario") String nombreUsuario) {
 		Usuario user =  usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 		
-		List<UsuarioRol> rolesUsuario = usuarioRolService.buscarRolesUsuario(user);
-		StringBuilder roles = new StringBuilder();
-		rolesUsuario.forEach(rolUsuario -> {
-			roles.append(rolUsuario.getRol());
-		});
+		String roles = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
 		
-		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles.toString(), user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
+		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles, user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
 		return fullUser;
 	}
 	
