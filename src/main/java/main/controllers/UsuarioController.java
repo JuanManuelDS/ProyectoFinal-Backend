@@ -87,8 +87,17 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/usuarios/buscar/nombre_usuario/{nombreUsuario}")
-	public Usuario buscarUsuarioNombre(@PathVariable(name="nombreUsuario") String nombreUsuario) {
-		return usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+	public UsuarioCompleto buscarUsuarioNombre(@PathVariable(name="nombreUsuario") String nombreUsuario) {
+		Usuario user =  usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		
+		List<UsuarioRol> rolesUsuario = usuarioRolService.buscarRolesUsuario(user);
+		List<Rol> roles = new ArrayList<>();
+		rolesUsuario.forEach(rolUsuario -> {
+			roles.add(rolUsuario.getRol());
+		});
+		
+		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles, user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
+		return fullUser;
 	}
 	
 	
@@ -197,28 +206,65 @@ public class UsuarioController {
 	}
 }
 
-class NombreUsuario {
+/*-------------------- CLASES AUXILIARES PARA ENVIAR/RECIBIR INFORMACIÓN ----------------------------*/
+
+class UsuarioCompleto {
 	private String nombreUsuario;
-
-	public NombreUsuario(String nombreUsuario) {
+	private List<Rol> roles;
+	private String email;
+	private Long id;
+	private String lastLogin;
+	private String contrasena;
+	
+	public UsuarioCompleto(String nombreUsuario, List<Rol> roles, String email, Long id, String lastLogin,
+			String contrasena) {
+		super();
 		this.nombreUsuario = nombreUsuario;
+		this.roles = roles;
+		this.email = email;
+		this.id = id;
+		this.lastLogin = lastLogin;
+		this.contrasena = contrasena;
 	}
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-}
-
-class EmailUsuario {
-	private String email;
-	
-	public EmailUsuario(String email) {
-		this.email = email;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
-	
-	public String getEmailUsuario() {
+	public List<Rol> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+	public String getEmail() {
 		return email;
 	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(String lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	public String getContrasena() {
+		return contrasena;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	
+	
+	
 }
 
 //Uso esta clase para retornar la información del usuario cuando valido el token desde el front
