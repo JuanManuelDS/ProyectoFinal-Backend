@@ -1,7 +1,10 @@
 package main.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,6 +156,13 @@ public class UsuarioController {
 	public UsuarioInfo getUsuario() {
 		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		String credenciales = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+		
+		//Agrego la fecha de validación de token
+		LocalDateTime date = LocalDateTime.now();
+		DateTimeFormatter formateado =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		String fecha = date.format(formateado);
+		
+		usuarioService.buscarUsuarioPorNombreUsuario(username).setLastLogin(fecha);
 		
 		return new UsuarioInfo(username, credenciales);
 	}
