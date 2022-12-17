@@ -36,8 +36,7 @@ public class Usuario {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
 	private List<UsuarioRol> roles;
 	
-	@OneToMany
-	@JoinColumn(name = "email")
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY, mappedBy="usuario")
 	private List<Plantilla> plantillas;
 	
 	//------------------CONSTRUCTORES----------------------------
@@ -90,7 +89,6 @@ public class Usuario {
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Plantilla")
 	public List<Plantilla> getPlantillas() {
 		return plantillas;
 	}
@@ -99,7 +97,7 @@ public class Usuario {
 		this.plantillas = plantillas;
 	}
 	
-	@JsonIgnore
+	
 	public List<UsuarioRol> getRoles() {
 		return roles;
 	}
