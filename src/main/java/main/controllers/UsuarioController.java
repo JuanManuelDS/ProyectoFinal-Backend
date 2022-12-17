@@ -162,7 +162,8 @@ public class UsuarioController {
 		DateTimeFormatter formateado =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		String fecha = date.format(formateado);
 		
-		usuarioService.buscarUsuarioPorNombreUsuario(username).setLastLogin(fecha);
+		Usuario user = usuarioService.buscarUsuarioPorNombreUsuario(username);
+		user.setLastLogin(fecha);
 		
 		return new UsuarioInfo(username, credenciales);
 	}
