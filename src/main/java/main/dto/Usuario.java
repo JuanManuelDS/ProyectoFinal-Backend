@@ -97,7 +97,7 @@ public class Usuario {
 		this.plantillas = plantillas;
 	}
 	
-	
+	@JsonIgnore
 	public List<UsuarioRol> getRoles() {
 		return roles;
 	}
