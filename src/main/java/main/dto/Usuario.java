@@ -33,6 +33,9 @@ public class Usuario {
 	@Column(name = "contrasena")
 	private String contrasena;
 	
+	@Column(name="last_login")
+	private String lastLogin;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
 	private List<UsuarioRol> roles;
 	
@@ -44,15 +47,19 @@ public class Usuario {
 	public Usuario() {
 		
 	}
-	
-	public Usuario(Long id, String email, String nombreUsuario, String contrasena, List<Plantilla> plantillas,  List<UsuarioRol> roles) {
+
+	public Usuario(Long id, String email, String nombreUsuario, String contrasena, String lastLogin,
+			List<UsuarioRol> roles, List<Plantilla> plantillas) {
 		this.id = id;
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
-		this.plantillas = plantillas;
+		this.lastLogin = lastLogin;
 		this.roles = roles;
+		this.plantillas = plantillas;
 	}
+
+
 
 	//----------------GETTERS Y SETTERS------------------------------
 
@@ -106,11 +113,30 @@ public class Usuario {
 		this.roles = roles;
 	}
 	
+	
+	
+
+	public String getLastLogin() {
+		return lastLogin;
+	}
+
+
+
+	public void setLastLogin(String lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+
+
+
+
 	//------------------------TOSTRING-----------------------------
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", nombre usuario=" + nombreUsuario + "]";
+		return "Usuario [id=" + id + ", email=" + email + ", nombreUsuario=" + nombreUsuario + ", lastLogin="
+				+ lastLogin + "]";
 	}
+	
 
 }

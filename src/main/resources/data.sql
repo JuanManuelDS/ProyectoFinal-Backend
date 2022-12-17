@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS shrimpdf;
+DROP DATABASE IF EXISTS railway;
 
-CREATE DATABASE shrimpdf;
-USE shrimpdf;
+CREATE DATABASE railway;
+USE railway;
 
 DROP TABLE IF EXISTS usuarios;
 
@@ -10,6 +10,7 @@ id int auto_increment,
 email VARCHAR(100) UNIQUE,
 nombre_usuario VARCHAR(100) UNIQUE,
 contrasena VARCHAR(100),
+last_login VARCHAR(40),
 PRIMARY KEY (id));
 
 CREATE TABLE rol (
