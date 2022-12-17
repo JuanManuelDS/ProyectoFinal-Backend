@@ -93,7 +93,7 @@ public class UsuarioController {
 		List<UsuarioRol> rolesUsuario = usuarioRolService.buscarRolesUsuario(user);
 		StringBuilder roles = new StringBuilder();
 		rolesUsuario.forEach(rolUsuario -> {
-			roles.append(rolUsuario.getRol().getName());
+			roles.append(rolUsuario.getRol().getName() + " ");
 		});
 		
 		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles.toString(), user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
