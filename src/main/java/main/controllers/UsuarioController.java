@@ -91,12 +91,12 @@ public class UsuarioController {
 		Usuario user =  usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 		
 		List<UsuarioRol> rolesUsuario = usuarioRolService.buscarRolesUsuario(user);
-		List<Rol> roles = new ArrayList<>();
+		StringBuilder roles = new StringBuilder();
 		rolesUsuario.forEach(rolUsuario -> {
-			roles.add(rolUsuario.getRol());
+			roles.append(rolUsuario.getRol());
 		});
 		
-		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles, user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
+		UsuarioCompleto fullUser = new UsuarioCompleto(nombreUsuario, roles.toString(), user.getEmail(), user.getId(), user.getLastLogin(), user.getContrasena());
 		return fullUser;
 	}
 	
@@ -210,13 +210,13 @@ public class UsuarioController {
 
 class UsuarioCompleto {
 	private String nombreUsuario;
-	private List<Rol> roles;
+	private String roles;
 	private String email;
 	private Long id;
 	private String lastLogin;
 	private String contrasena;
 	
-	public UsuarioCompleto(String nombreUsuario, List<Rol> roles, String email, Long id, String lastLogin,
+	public UsuarioCompleto(String nombreUsuario, String roles, String email, Long id, String lastLogin,
 			String contrasena) {
 		super();
 		this.nombreUsuario = nombreUsuario;
@@ -226,18 +226,25 @@ class UsuarioCompleto {
 		this.lastLogin = lastLogin;
 		this.contrasena = contrasena;
 	}
+	
+	
+	public String getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
-	public List<Rol> getRoles() {
-		return roles;
-	}
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
+
 	public String getEmail() {
 		return email;
 	}
