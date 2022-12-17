@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.Rol;
@@ -63,8 +67,11 @@ public class UsuarioController {
 	
 	
 	@GetMapping("/usuarios")
-	public List<Usuario> listarUsuarios(){
-		return usuarioService.listarUsuarios();
+	public Page<Usuario> listarUsuarios(@RequestParam(name="registros")int registros, @RequestParam(name="pagina")int pagina){
+		
+		//Le digo que tome la página 0 y me traiga la cantidad de registros que vengan por parámetro
+		Pageable pagination = PageRequest.of(pagina, registros);
+		return usuarioService.listarUsuarios(pagination);
 	}
 	
 	

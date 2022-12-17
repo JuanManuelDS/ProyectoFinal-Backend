@@ -1,12 +1,14 @@
 package main.services;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import main.dto.Usuario;
 
 public interface IUsuarioServices {
 
-	public List<Usuario> listarUsuarios();
+	public Page<Usuario> listarUsuarios(Pageable pageable);
 	
 	public Usuario buscarUsuario(Long id);
 	

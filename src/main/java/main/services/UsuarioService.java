@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,11 +50,7 @@ public class UsuarioService implements IUsuarioServices, UserDetailsService{
 		return new User(usuario.getNombreUsuario(), usuario.getContrasena(), autoridades);
 	}
 
-	@Override
-	public List<Usuario> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return iUsuarioDAO.findAll();
-	}
+	
 
 	@Override
 	public Usuario buscarUsuario(Long id) {
@@ -87,5 +86,11 @@ public class UsuarioService implements IUsuarioServices, UserDetailsService{
 	public Usuario buscarUsuarioPorNombreUsuario(String nombreUsuario) {
 		// TODO Auto-generated method stub
 		return iUsuarioDAO.findByNombreUsuario(nombreUsuario);
+	}
+
+	@Override
+	public Page<Usuario> listarUsuarios(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return iUsuarioDAO.findAll(pageable);
 	}
 }
