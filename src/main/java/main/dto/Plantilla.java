@@ -102,12 +102,12 @@ public class Plantilla {
 	}
 
 
-	public String getData() {
+	public String getDatos() {
 		return datos;
 	}
 
 
-	public void setData(String data) {
+	public void setDatos(String data) {
 		this.datos = data;
 	}
 
@@ -121,7 +121,7 @@ public class Plantilla {
 	@Override
 	public String toString() {
 		return "Plantilla [id=" + id + ", nombre_archivo=" + nombreArchivo + ", firma=" + firma + ", usuario="
-				+ usuario + "]";
+				+ usuario + "]" + "datos: " + datos;
 	}
 
 	

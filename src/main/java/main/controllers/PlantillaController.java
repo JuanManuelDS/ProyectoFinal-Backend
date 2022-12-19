@@ -47,6 +47,7 @@ public class PlantillaController {
 	public Plantilla guardarPlantilla(@RequestBody Plantilla plantilla, @PathVariable(name="nombreUsuario")String nombreUsuario) {
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
 		plantilla.setUsuario(usuario);
+		System.out.println(plantilla.toString());
 		return plantillaService.guardarPlantilla(plantilla);
 	}
 	
