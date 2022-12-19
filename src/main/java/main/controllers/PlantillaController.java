@@ -51,7 +51,7 @@ public class PlantillaController {
 		//Compruebo que la plantilla corresponda con el usuario que la está pidiendo
 		if(plantilla.getUsuario().equals(usuario)) {
 			return plantilla;
-		} else return null;
+		} else throw new Error();
 		
 	}
 	
