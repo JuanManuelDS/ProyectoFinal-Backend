@@ -32,13 +32,13 @@ public class PlantillaController {
 		return plantillaService.listarPlantillas();
 	}
 	
-	@GetMapping("/plantillas/{username}")
+	@GetMapping("/plantillas/buscar/nombreUsuario/{username}")
 	public List<Plantilla> plantillasUsuario(@PathVariable(name="username") String username){
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
 		return plantillaService.plantillasUsuario(usuario);
 	}
 	
-	@GetMapping("/plantillas/{id}")
+	@GetMapping("/plantillas/buscar/id/{id}")
 	public Plantilla buscarPlantilla(@PathVariable(name = "id") Long id) {
 		return plantillaService.buscarPlantilla(id);
 	}
