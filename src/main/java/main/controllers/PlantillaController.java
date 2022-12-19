@@ -3,6 +3,7 @@ package main.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,10 +44,11 @@ public class PlantillaController {
 	}
 	
 	@GetMapping("/plantillas/buscar/id/{id}")
-	public Plantilla buscarPlantilla(@PathVariable(name = "id") Long id, @RequestHeader(name="Username")String username) {
+	public Plantilla buscarPlantilla(@PathVariable(name = "id") Long id) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
 		Plantilla plantilla = plantillaService.buscarPlantilla(id);
-		
+		//Compruebo que la plantilla corresponda con el usuario que la está pidiendo
 		if(plantilla.getUsuario().equals(usuario)) {
 			return plantilla;
 		} else return null;
