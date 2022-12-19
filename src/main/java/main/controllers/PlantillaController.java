@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,8 +43,14 @@ public class PlantillaController {
 	}
 	
 	@GetMapping("/plantillas/buscar/id/{id}")
-	public Plantilla buscarPlantilla(@PathVariable(name = "id") Long id) {
-		return plantillaService.buscarPlantilla(id);
+	public Plantilla buscarPlantilla(@PathVariable(name = "id") Long id, @RequestHeader(name="Username")String username) {
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
+		Plantilla plantilla = plantillaService.buscarPlantilla(id);
+		
+		if(plantilla.getUsuario().equals(usuario)) {
+			return plantilla;
+		} else return null;
+		
 	}
 	
 	@PostMapping("/plantillas/{nombreUsuario}")
