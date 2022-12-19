@@ -43,8 +43,10 @@ public class PlantillaController {
 		return plantillaService.buscarPlantilla(id);
 	}
 	
-	@PostMapping("/plantillas")
-	public Plantilla guardarPlantilla(@RequestBody Plantilla plantilla) {
+	@PostMapping("/plantillas/{nombreUsuario}")
+	public Plantilla guardarPlantilla(@RequestBody Plantilla plantilla, @PathVariable(name="nombreUsuario")String nombreUsuario) {
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(nombreUsuario);
+		plantilla.setUsuario(usuario);
 		return plantillaService.guardarPlantilla(plantilla);
 	}
 	
