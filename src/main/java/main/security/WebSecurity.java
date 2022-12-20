@@ -5,6 +5,8 @@ import static main.security.Constants.REGISTER_URL;
 import static main.security.Constants.ROLE_TO_USER_URL;
 import static main.security.Constants.VALIDATION_URL;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -65,4 +67,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
 	}*/
+	
+	@Bean
+    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("*"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+    configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+    configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+    }
+	
+	
 }
