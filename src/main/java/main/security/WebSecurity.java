@@ -38,7 +38,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // Se desactiva el uso de cookies
-			/*.cors().and()*/ // Se activa la configuración CORS con los valores por defecto
+			.cors().and() // Se activa la configuración CORS con los valores por defecto
 			.csrf().disable() //Se desactiva el filtro CSRF
 			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
 			.antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()// Se indica que el /login no requiere autenticación
