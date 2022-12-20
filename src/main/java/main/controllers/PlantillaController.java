@@ -64,14 +64,16 @@ public class PlantillaController {
 		return plantillaService.guardarPlantilla(plantilla);
 	}
 	
-	@PutMapping("/plantillas/{id}")
-	public Plantilla actualizarPlantilla(@PathVariable(name = "id") Long id, @RequestBody Plantilla plantilla) {
+	@PutMapping("/plantillas/{id}/{username}")
+	public Plantilla actualizarPlantilla(@PathVariable(name = "id") Long id,@PathVariable(name="username")String username, @RequestBody Plantilla plantilla) {
 		Plantilla plantillaSeleccionada = plantillaService.buscarPlantilla(id);
+		
+		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
 		
 		plantillaSeleccionada.setNombreArchivo(plantilla.getNombre_archivo());
 		plantillaSeleccionada.setDatos(plantilla.getDatos());
 		plantillaSeleccionada.setFirma(plantilla.getFirma());
-		plantillaSeleccionada.setUsuario(plantilla.getUsuario());
+		plantillaSeleccionada.setUsuario(usuario);
 		
 		return plantillaService.actualizarPlantilla(plantillaSeleccionada);
 	}
