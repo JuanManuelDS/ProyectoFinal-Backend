@@ -36,6 +36,8 @@ public class PlantillaController {
 	public List<Plantilla> listarPlantillas(){
 		return plantillaService.listarPlantillas();
 	}
+
+	
 	
 	@GetMapping("/plantillas/buscar/nombreUsuario/{username}")
 	public List<Plantilla> plantillasUsuario(@PathVariable(name="username") String username){
