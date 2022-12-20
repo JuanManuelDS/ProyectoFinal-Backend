@@ -70,6 +70,7 @@ public class PlantillaController {
 		
 		Usuario usuario = usuarioService.buscarUsuarioPorNombreUsuario(username);
 		
+		plantillaSeleccionada.setNombreArchivo(plantilla.getNombreArchivo())
 		plantillaSeleccionada.setNombreArchivo(plantilla.getNombre_archivo());
 		plantillaSeleccionada.setDatos(plantilla.getDatos());
 		plantillaSeleccionada.setFirma(plantilla.getFirma());
