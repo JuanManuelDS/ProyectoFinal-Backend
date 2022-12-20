@@ -35,8 +35,8 @@ import main.services.UsuarioRolService;
 import main.services.UsuarioService;
 
 @RestController
-@RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@RequestMapping("/api")
 public class UsuarioController {
 
 	@Autowired
