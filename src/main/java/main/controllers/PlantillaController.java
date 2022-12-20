@@ -69,6 +69,7 @@ public class PlantillaController {
 		Plantilla plantillaSeleccionada = plantillaService.buscarPlantilla(id);
 		
 		plantillaSeleccionada.setNombreArchivo(plantilla.getNombre_archivo());
+		plantillaSeleccionada.setDatos(plantilla.getDatos());
 		plantillaSeleccionada.setFirma(plantilla.getFirma());
 		plantillaSeleccionada.setUsuario(plantilla.getUsuario());
 		
