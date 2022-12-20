@@ -63,9 +63,6 @@ public class Plantilla {
 
 	// -----------------------GETTERS Y SETTERS-----------------------------
 
-	public String getNombre_archivo() {
-		return nombreArchivo;
-	}
 
 	public void setNombreArchivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
