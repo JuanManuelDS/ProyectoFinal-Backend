@@ -153,7 +153,7 @@ public class UsuarioController {
 			usuarioSeleccionado.setEmail(usuario.getEmail());
 		}
 		if(usuario.getContrasena().length()>0) {
-			usuarioSeleccionado.setContrasena(usuario.getContrasena());
+			usuarioSeleccionado.setContrasena(bCryptPasswordEncoder.encode(usuario.getContrasena()));
 		}
 		
 		return usuarioService.actualizarUsuario(usuarioSeleccionado);
